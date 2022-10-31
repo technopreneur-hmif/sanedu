@@ -14,7 +14,7 @@ class CreateStatussTable extends Migration
     public function up()
     {
         Schema::create('statuss', function (Blueprint $table) {
-            $table->string('id_status',20)->unique();
+            $table->string('id_status',20)->primary()->unique();
             $table->string('status',50);
         });
     }

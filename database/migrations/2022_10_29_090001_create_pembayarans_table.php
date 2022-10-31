@@ -14,7 +14,7 @@ class CreatePembayaransTable extends Migration
     public function up()
     {
         Schema::create('pembayarans', function (Blueprint $table) {
-            $table->string('id_pembayaran',20)->unique();
+            $table->string('id_pembayaran',20)->primary()->unique();
             $table->date('tanggal_pembayaran',50);
             $table->integer('nominal');
             $table->integer('pembayaran_ke');
