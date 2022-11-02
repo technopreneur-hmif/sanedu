@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
+
+Route::post('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/daftar_ortu',[AuthController::class, 'daftar_ortu'])->name('daftar_ortu');
+
+Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
+
+});
+    Route::post('/login', [AuthController::class, 'index'])->name('login');
+
+
