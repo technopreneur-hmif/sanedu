@@ -15,29 +15,30 @@
 
 <body>
     <div class="container">
-        <form>
+        <form action="{{ route('daftarsiswa') }}" method="POST">
+            @csrf
             <div class="row mb-3">
                 <label for="inputtext3" class="col-sm-3 col-form-label">Nama</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputtext3">
+                    <input type="text" name="nama" class="form-control" id="inputtext3">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputnumber3" class="col-sm-3 col-form-label">No WA</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputnumber3">
+                    <input type="text" name="no_wa" class="form-control" id="inputnumber3">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputPassword3" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                    <input type="password" class="form-control" id="inputPassword3">
+                    <input type="password" name="password" class="form-control" id="inputPassword3">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputPassword3" class="col-sm-3 col-form-label">Re-Password</label>
                 <div class="col-sm-9">
-                    <input type="password" class="form-control" id="inputPassword3">
+                    <input type="password" name="repassword" class="form-control" id="inputPassword3">
                 </div>
             </div>
             <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -50,7 +51,7 @@
                     Password tidak sama harap ulangi
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Daftar</button>
         </form>
     </div>
 

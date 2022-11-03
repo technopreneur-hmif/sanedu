@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <form action="check_login" method="POST">
+        <form action="{{ route('check_login') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
                 <label for="inputnumber3" class="col-sm-3 col-form-label">No WA</label>
@@ -29,6 +29,7 @@
                     <input type="password" name="password" class="form-control" id="inputPassword3" required>
                 </div>
             </div>
+            <input type="text" name="roles" value="{{ $role }}" hidden>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <div class="alert alert-danger d-flex align-items-center" role="alert">
