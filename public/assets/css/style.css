@@ -6,7 +6,7 @@
     border-top-right-radius: 0px;
     position: absolute;
     top: 0;
-    left: 0
+    left: 0;
 }
 
 .footer {
@@ -17,16 +17,12 @@
     border-bottom-left-radius: 0px;
     position: absolute;
     bottom: 0;
-    right: 0
+    right: 0;
 }
 
 .container {
     width: 30%;
     margin-top: 10%;
-}
-
-.btn-primary {
-    margin-left: 45%;
 }
 
 .bg-primary {

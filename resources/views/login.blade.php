@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <form action="{{ route('check_login') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('check_login') }}" method="POST" enctype="multipart/form-data" align="center">
             @csrf
             <div class="row mb-3">
                 <label for="inputnumber3" class="col-sm-3 col-form-label">No WA</label>

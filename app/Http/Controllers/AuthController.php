@@ -15,7 +15,8 @@ class AuthController extends Controller
                 $role = '1';
                 return view('login',compact('role'));
             }else if($request->tombol=='Daftar'){
-                return view('daftarortu');
+                $pesan='0';
+                return view('daftarortu',compact('pesan'));
             }
 
         }else if($request->roles=='2'){
@@ -23,7 +24,8 @@ class AuthController extends Controller
                 $role = '2';
                 return view('login',compact('role'));
             }else if($request->tombol=='Daftar'){
-                return view('daftarsiswa');
+                $pesan='0';
+                return view('daftarsiswa',compact('pesan'));
             }
         }
         return redirect('');
@@ -46,23 +48,26 @@ class AuthController extends Controller
             ];
         }
         if(Auth::Attempt($data)){
-            return redirect('');
+            dd($request->all());
         }else{
-            return redirect('login');
+            return redirect('');
         }
     }
 
     public function daftarsiswa(Request $request){
-        if($request->password==$request->repassword){
+        if($request->password==$request->repassword && $request->validate(['wa_siswa'=>'unique:user'])){
             User::create([
                 'nama' => $request->nama,
                 'wa_siswa' => $request->no_wa,
                 'password' => bcrypt($request->password),
                 'roles_id' => 2,
-                'status' => 1
+                'status' => 2
             ]);
-        }else{
-            return redirect('login');
+        }else if($request->validate(['wa_siswa'=>'unique:user'])){
+            return redirect('pendaftaransiswa')->with('nomor','Nomor sudah terdaftar');
+        }
+        else if($request->password==$request->repassword){
+            return redirect('pendaftaransiswa')->with('password','Password tidak sama harap ulangi');
         }
     }
 
@@ -75,10 +80,10 @@ class AuthController extends Controller
                 'hubungan' => $request->hubungan,
                 'password' => bcrypt($request->password),
                 'roles_id' => 1,
-                'status' => 1
+                'status' => 2
             ]);
         }else{
-            return redirect('login');
+            return redirect('pendaftaranortu')->with('password','Password tidak sama harap ulangi');
         }
     }
 }

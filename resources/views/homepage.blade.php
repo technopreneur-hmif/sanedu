@@ -24,7 +24,6 @@
         <br>
         <div class="text-center ">
             <h4>Sistem Monitoring Terintegrasi</h4>
-
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <select name="roles" id="roles">

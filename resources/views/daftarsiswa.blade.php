@@ -41,16 +41,19 @@
                     <input type="password" name="repassword" class="form-control" id="inputPassword3">
                 </div>
             </div>
+            @if(session('nomor'))
             <div class="alert alert-danger d-flex align-items-center" role="alert">
                 <div class="alert-text">
                     Nomor sudah terdaftar
                 </div>
             </div>
+            @elseif(session('password'))
             <div class="alert alert-danger d-flex align-items-center" role="alert">
                 <div class="alert-text">
-                    Password tidak sama harap ulangi
+                    Password tidak sama harap ulangi!
                 </div>
             </div>
+            @endif
             <button type="submit" class="btn btn-primary">Daftar</button>
         </form>
     </div>
