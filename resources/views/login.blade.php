@@ -32,21 +32,25 @@
             <input type="text" name="roles" value="{{ $role }}" hidden>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        @if(session('nomor'))
         <div class="alert alert-danger d-flex align-items-center" role="alert">
             <div class="alert-text">
                 Nomor tidak sesuai
             </div>
         </div>
+        @elseif(session('password'))
         <div class="alert alert-danger d-flex align-items-center" role="alert">
             <div class="alert-text">
                 Password salah, jika lupa hubungi admin
             </div>
         </div>
+        @elseif(session('akun'))
         <div class="alert alert-danger d-flex align-items-center" role="alert">
             <div class="alert-text">
                 Akun anda belum diverifikasi, harap hubungi admin
             </div>
         </div>
+        @endif
 
 
 

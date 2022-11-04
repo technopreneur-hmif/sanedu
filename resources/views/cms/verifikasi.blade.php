@@ -117,6 +117,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
             <a class="btn btn-primary" href="#" role="button">Kelas</a>
         </div>
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
@@ -158,14 +159,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </td>
                         <td>
                             <div class="col-md-13">
-                                <button type="button" class="btn btn-success">Acc</button>
-                                <button type="button" class="btn btn-danger">Tolak</button>
+                                <a href="verifikasi/update/{{ $result->id }}"><button type="button" class="btn btn-success">Acc</button></a>
+                                <a href="verifikasi/delete/{{ $result->id }}"><button type="button" class="btn btn-danger">Tolak</button></a>
                             </div>
                         </td>
                     </tr>
                     @endforeach
             <!-- /.content -->
         </div>
+        @if (session('sukses'))
+            <div class="alert alert-success">
+                {{ session('sukses') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->

@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <form action="{{ route('check_loginadmin') }}" method="POST" enctype="multipart/form-data" align="center">
+        <form action="{{ route('check_loginnew') }}" method="POST" enctype="multipart/form-data" align="center">
             @csrf
             <div class="row mb-3">
                 <label for="inputnumber3" class="col-sm-3 col-form-label">No WA</label>
@@ -29,8 +29,28 @@
                     <input type="password" name="password" class="form-control" id="inputPassword3" required>
                 </div>
             </div>
+            <input type="text" name="roles" value="{{ $role }}" hidden>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        @if(session('nomor'))
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <div class="alert-text">
+                Nomor tidak sesuai
+            </div>
+        </div>
+        @elseif(session('password'))
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <div class="alert-text">
+                Password salah, jika lupa hubungi admin
+            </div>
+        </div>
+        @elseif(session('akun'))
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <div class="alert-text">
+                Akun anda belum diverifikasi, harap hubungi admin
+            </div>
+        </div>
+        @endif
 
 
 

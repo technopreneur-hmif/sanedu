@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -49,23 +51,76 @@ class AuthController extends Controller
         if(Auth::Attempt($data)){
             return redirect('verifikasi');
         }else{
-            dd($request->all());
+            return redirect('loginadmin');
         }
     }
 
     public function check_login(Request $request){
-        if($request->roles=='1'){
-            $data = [
-                'wa_ortu' => $request->input('no_wa'),
-                'password' => $request->input('password')
-            ];
-        }else{
+        $verif = User::where('wa_ortu',$request->no_wa)->first();
+        if($request->roles=='1' && $verif->status=='1'){
+            if($verif)
+                $data = [
+                    'wa_ortu' => $request->input('no_wa'),
+                    'password' => $request->input('password')
+                ];
+        }else if($request->roles=='2' && $verif->status=='1'){
             $data = [
                 'wa_siswa' => $request->input('no_wa'),
                 'password' => $request->input('password')
             ];
+        }else{
+            return redirect('');
         }
         if(Auth::Attempt($data)){
+
+            dd($request->all());
+        }else{
+            return redirect('');
+        }
+    }
+
+    public function check_loginnew(Request $request){
+        $verifortu = User::where('wa_ortu',$request->no_wa)->first();
+        $verifsiswa = User::where('wa_siswa',$request->no_wa)->first();
+        if($request->roles=='1'){
+            if($verifortu==true){
+                if($verifortu->status!='1'){
+                    return redirect('loginortu')->with('akun','Akun anda belum diverifikasi, harap hubungi admin');
+                }
+                if(!Hash::check($request->password,$verifortu->password)){
+                    return redirect('loginortu')->with('password','Password salah, jika lupa hubungi admin');
+                }
+                else{
+                    $data = [
+                        'wa_ortu' => $request->input('no_wa'),
+                        'password' => $request->input('password')
+                    ];
+                }
+            }else{
+                return redirect('loginortu')->with('nomor','Nomor tidak sesuai');
+            }
+        }else if($request->roles=='2'){
+            if($verifsiswa==true){
+                if($verifsiswa->status!='1'){
+                    return redirect('loginsiswa')->with('akun','Akun anda belum diverifikasi, harap hubungi admin');
+                }
+                if(!Hash::check($request->password,$verifsiswa->password)){
+                    return redirect('loginsiswa')->with('password','Password salah, jika lupa hubungi admin');
+                }
+                else{
+                    $data = [
+                        'wa_siswa' => $request->input('no_wa'),
+                        'password' => $request->input('password')
+                    ];
+                }
+            }else{
+                return redirect('loginsiswa')->with('nomor','Nomor tidak sesuai');
+            }
+        }else{
+            return redirect('');
+        }
+        if(Auth::Attempt($data)){
+
             dd($request->all());
         }else{
             return redirect('');
@@ -73,34 +128,37 @@ class AuthController extends Controller
     }
 
     public function daftarsiswa(Request $request){
-        if($request->password==$request->repassword && $request->validate(['wa_siswa'=>'unique:user'])){
+        $verif = User::where('wa_siswa',$request->no_wa)->first();
+        if($request->password==$request->repassword && $verif==false){
             User::create([
                 'nama' => $request->nama,
                 'wa_siswa' => $request->no_wa,
-                'password' => bcrypt($request->password),
+                'password' => Hash::make($request->password),
                 'roles_id' => 2,
                 'status' => 2
             ]);
-        }else if($request->validate(['wa_siswa'=>'unique:user'])){
+        }else if($verif==true){
             return redirect('pendaftaransiswa')->with('nomor','Nomor sudah terdaftar');
-        }
-        else if($request->password==$request->repassword){
+        }else if($request->password!=$request->repassword){
             return redirect('pendaftaransiswa')->with('password','Password tidak sama harap ulangi');
         }
     }
 
     public function daftarortu(Request $request){
-        if($request->password==$request->repassword){
+        $verif = User::where('wa_ortu',$request->wa_ortu)->first();
+        if($request->password==$request->repassword && $verif==false){
             User::create([
                 'nama' => $request->nama,
                 'wa_ortu' => $request->wa_ortu,
                 'wa_siswa' => $request->wa_siswa,
                 'hubungan' => $request->hubungan,
-                'password' => bcrypt($request->password),
+                'password' => Hash::make($request->password),
                 'roles_id' => 1,
                 'status' => 2
             ]);
-        }else{
+        }else if($verif==true){
+            return redirect('pendaftaranortu')->with('nomor','Nomor sudah terdaftar');
+        }else if($request->password!=$request->repassword){
             return redirect('pendaftaranortu')->with('password','Password tidak sama harap ulangi');
         }
     }
@@ -108,5 +166,29 @@ class AuthController extends Controller
     public function verifikasi(){
         $data = User::all();
         return view('cms.verifikasi',compact('data'));
+    }
+
+    public function destroy($id){
+        try{
+
+            $data = User::where('id', $id)->first();
+            $data->delete();
+        } catch(Exception $ex){
+            return redirect('verifikasi')->with('error', 'Gagal Hapus Data!');
+        }
+        return redirect('verifikasi')->with('sukses', 'Berhasil Hapus Data!');
+    }
+
+    public function verifikasi_update($id){
+        try{
+            $upd = User::findOrFail($id);
+            $upd->update([
+                'status' => '1'
+            ]);
+        } catch(Exception $ex){
+            return redirect('verifikasi')->with('error', 'Gagal Update Data!');
+        }
+        return redirect('verifikasi')->with('sukses', 'Berhasil Update Data!');
+
     }
 }
