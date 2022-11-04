@@ -31,8 +31,26 @@ class AuthController extends Controller
         return redirect('');
     }
 
+    public function loginadmin(){
+        return view('loginadmin');
+    }
+
+
+
     public function daftar_ortu(){
         return view('daftarortu');
+    }
+
+    public function check_loginadmin(Request $request){
+        $data = [
+            'wa_ortu' => $request->input('no_wa'),
+            'password' => $request->input('password')
+        ];
+        if(Auth::Attempt($data)){
+            return redirect('verifikasi');
+        }else{
+            dd($request->all());
+        }
     }
 
     public function check_login(Request $request){
@@ -85,5 +103,10 @@ class AuthController extends Controller
         }else{
             return redirect('pendaftaranortu')->with('password','Password tidak sama harap ulangi');
         }
+    }
+
+    public function verifikasi(){
+        $data = User::all();
+        return view('cms.verifikasi',compact('data'));
     }
 }
