@@ -1,0 +1,23 @@
+.btn-primary {
+    display: inline-block;
+    width: 11%;
+    margin-bottom: 10px;
+}
+
+.button {
+    margin-left: 17%;
+}
+
+.main-sidebar {
+    background-color: #0275d8;
+}
+
+.tambahkelas {
+    float: right;
+    margin-right: 20px;
+}
+
+form {
+    float: right;
+    margin-right: 20px;
+}
