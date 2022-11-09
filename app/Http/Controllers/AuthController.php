@@ -45,7 +45,7 @@ class AuthController extends Controller
 
     public function check_loginadmin(Request $request){
         $data = [
-            'wa_ortu' => $request->input('no_wa'),
+            'wa_user' => $request->input('no_wa'),
             'password' => $request->input('password')
         ];
         if(Auth::Attempt($data)){
@@ -56,16 +56,16 @@ class AuthController extends Controller
     }
 
     public function check_login(Request $request){
-        $verif = User::where('wa_ortu',$request->no_wa)->first();
+        $verif = User::where('wa_user',$request->no_wa)->first();
         if($request->roles=='1' && $verif->status=='1'){
             if($verif)
                 $data = [
-                    'wa_ortu' => $request->input('no_wa'),
+                    'wa_user' => $request->input('no_wa'),
                     'password' => $request->input('password')
                 ];
         }else if($request->roles=='2' && $verif->status=='1'){
             $data = [
-                'wa_siswa' => $request->input('no_wa'),
+                'wa_user' => $request->input('no_wa'),
                 'password' => $request->input('password')
             ];
         }else{
@@ -80,10 +80,10 @@ class AuthController extends Controller
     }
 
     public function check_loginnew(Request $request){
-        $verifortu = User::where('wa_ortu',$request->no_wa)->first();
-        $verifsiswa = User::where('wa_siswa',$request->no_wa)->first();
+        $verifortu = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
+        $verifsiswa = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
         if($request->roles=='1'){
-            if($verifortu==true){
+            if($verifortu==true && $request->roles=='1'){
                 if($verifortu->status!='1'){
                     return redirect('loginortu')->with('akun','Akun anda belum diverifikasi, harap hubungi admin');
                 }
@@ -92,7 +92,7 @@ class AuthController extends Controller
                 }
                 else{
                     $data = [
-                        'wa_ortu' => $request->input('no_wa'),
+                        'wa_user' => $request->input('no_wa'),
                         'password' => $request->input('password')
                     ];
                 }
@@ -100,7 +100,7 @@ class AuthController extends Controller
                 return redirect('loginortu')->with('nomor','Nomor tidak sesuai');
             }
         }else if($request->roles=='2'){
-            if($verifsiswa==true){
+            if($verifsiswa==true && $request->roles=='2'){
                 if($verifsiswa->status!='1'){
                     return redirect('loginsiswa')->with('akun','Akun anda belum diverifikasi, harap hubungi admin');
                 }
@@ -109,7 +109,7 @@ class AuthController extends Controller
                 }
                 else{
                     $data = [
-                        'wa_siswa' => $request->input('no_wa'),
+                        'wa_user' => $request->input('no_wa'),
                         'password' => $request->input('password')
                     ];
                 }
@@ -128,11 +128,11 @@ class AuthController extends Controller
     }
 
     public function daftarsiswa(Request $request){
-        $verif = User::where('wa_siswa',$request->no_wa)->first();
+        $verif = User::where('wa_user',$request->no_wa)->first();
         if($request->password==$request->repassword && $verif==false){
             User::create([
                 'nama' => $request->nama,
-                'wa_siswa' => $request->no_wa,
+                'wa_user' => $request->no_wa,
                 'password' => Hash::make($request->password),
                 'roles_id' => 2,
                 'status' => 2
@@ -145,11 +145,11 @@ class AuthController extends Controller
     }
 
     public function daftarortu(Request $request){
-        $verif = User::where('wa_ortu',$request->wa_ortu)->first();
+        $verif = User::where('wa_user',$request->wa_ortu)->first();
         if($request->password==$request->repassword && $verif==false){
             User::create([
                 'nama' => $request->nama,
-                'wa_ortu' => $request->wa_ortu,
+                'wa_user' => $request->wa_ortu,
                 'wa_siswa' => $request->wa_siswa,
                 'hubungan' => $request->hubungan,
                 'password' => Hash::make($request->password),
@@ -164,8 +164,9 @@ class AuthController extends Controller
     }
 
     public function verifikasi(){
-        $data = User::all();
-        return view('cms.verifikasi',compact('data'));
+        $data = User::where('status','2')->get();
+        $siswa = User::where('wa_siswa',null)->get();
+        return view('cms.verifikasi',compact('data','siswa'));
     }
 
     public function destroy($id){
