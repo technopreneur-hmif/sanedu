@@ -112,10 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <div class="button">
-            <a class="btn btn-primary" href="#" role="button">Verifikasi Akun</a>
-            <a class="btn btn-primary" href="#" role="button">Siswa</a>
-            <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
-            <a class="btn btn-primary" href="#" role="button">Kelas</a>
+            <a class="btn btn-primary" href="verif-akun.html" role="button">Verifikasi Akun</a>
+            <a class="btn btn-primary" href="siswa.html" role="button">Siswa</a>
+            <a class="btn btn-primary" href="ortu.html" role="button">Orang Tua</a>
+            <a class="btn btn-primary klas" href="kelas.html" role="button">Kelas</a>
         </div>
         <div class="tambahkelas" type="button">
             <button type="button" class="btn btn-warning">Tambah Kelas</button>
@@ -137,6 +137,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <th>
                                 Aksi
                             </th>
+                            <th>
+                                On/Off Kelas
+                            </th>
                         </tr>
                     </thead>
 
@@ -148,10 +151,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             10
                         </td>
                         <td>
-                            <div class="col-md-13">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                            <div class="dropdown">
+                                <div class="kiri">
+                                    <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                                </div>
+                                <div class="kanan">
+                                    <a class="btn btn-danger" href="" role="button">Hapus</a>
+                                </div>
                             </div>
+                        </td>
+                        <td>
+                            <label class="container">
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                              </label>
                         </td>
                     </tr>
                     <td>
@@ -161,12 +174,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         6
                     </td>
                     <td>
-                        <div class="col-md-13">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                        <div class="dropdown">
+                            <div class="kiri">
+                                <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                            </div>
+                            <div class="kanan">
+                                <a class="btn btn-danger" href="" role="button">Hapus</a>
                             </div>
                         </div>
+                    </td>
+                    <td>
+                        <label class="container">
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                          </label>
                     </td>
                     </tr>
                     <td>
@@ -176,10 +197,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         8
                     </td>
                     <td>
-                        <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
+                        <div class="dropdown">
+                            <div class="kiri">
+                                <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                            </div>
+                            <div class="kanan">
+                                <a class="btn btn-danger" href="" role="button">Hapus</a>
+                            </div>
                         </div>
+                    </td>
+                    <td>
+                        <label class="container">
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                          </label>
                     </td>
                     </tr>
                     <td>
@@ -189,22 +220,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         10
                     </td>
                     <td>
-                        <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
+                        <div class="dropdown">
+                            <div class="kiri">
+                                <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                            </div>
+                            <div class="kanan">
+                                <a class="btn btn-danger" href="" role="button">Hapus</a>
+                            </div>
                         </div>
                     </td>
-                    </tr>
                     <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
+                        <label class="container">
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                          </label>
                     </td>
                     </tr>
+                    <td>
+                        -
+                    </td>
+
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    </tr>
+
+                    <td>
+                        -
+                    </td>
                     <td>
                         -
                     </td>
@@ -232,6 +281,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->
+    <!-- Pop Up -->
+    <div class="dropdown">
+        <div class="popup-wrapper" id="popup">
+            <div class="popup-container">
+                <form action="" method="post" class="popup-form">
+                    <div class="input-group">
+                        <div class="container">
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="inputnumber3" class="col-sm-3 col-form-label">Nama Kelas</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputnumber3">
+                                    </div>
+                                </div>
+                                <input type="submit" value="Kirim" name="">
+                            </form>
+                        </div>
+                    </div>
+                    <a class="popup-close" href="#closed">X</a>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- REQUIRED SCRIPTS -->
 

@@ -112,10 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <div class="button">
-            <a class="btn btn-primary" href="#" role="button">Verifikasi Akun</a>
-            <a class="btn btn-primary" href="#" role="button">Siswa</a>
-            <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
-            <a class="btn btn-primary" href="#" role="button">Kelas</a>
+            <a class="btn btn-primary" href="verif-akun.html" role="button">Verifikasi Akun</a>
+            <a class="btn btn-primary siswa" href="siswa.html" role="button">Siswa</a>
+            <a class="btn btn-primary" href="ortu.html" role="button">Orang Tua</a>
+            <a class="btn btn-primary" href="kelas.html" role="button">Kelas</a>
         </div>
         <form action="#">
             <select name="classroom" id="lang">
@@ -167,9 +167,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </td>
                         <td>
                             <div class="col-md-13">
+                                <div class="dropdown">
+                                    <div class="kiri">
+                                        <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                                    </div>
+                                    <div class="kanan">
+                                        <a class="btn btn-danger" href="" role="button">Hapus</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-13">
                                 <button type="button" class="btn btn-warning">Edit</button>
                                 <button type="button" class="btn btn-danger">Hapus</button>
-                            </div>
+                            </div> -->
                         </td>
                     </tr>
                     <td>
@@ -187,8 +197,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td>
                         <div class="col-md-13">
                             <div class="dropdown">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                                <div class="kiri">
+                                    <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                                </div>
+                                <div class="kanan">
+                                    <a class="btn btn-danger" href="" role="button">Hapus</a>
+                                </div>
                             </div>
                         </div>
                     </td>
@@ -207,8 +221,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     <td>
                         <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
+                            <div class="dropdown">
+                                <div class="kiri">
+                                    <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                                </div>
+                                <div class="kanan">
+                                    <a class="btn btn-danger" href="" role="button">Hapus</a>
+                                </div>
+                            </div>
                         </div>
                     </td>
                     </tr>
@@ -226,8 +246,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     <td>
                         <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
+                            <div class="dropdown">
+                                <div class="kiri">
+                                    <a class="btn btn-warning" href="#popup" role="button">Edit</a>
+                                </div>
+                                <div class="kanan">
+                                    <a class="btn btn-danger" href="" role="button">Hapus</a>
+                                </div>
+                            </div>
                         </div>
                     </td>
                     </tr>
@@ -295,6 +321,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
+    </div>
+    <!-- Pop Up -->
+    <div class="dropdown">
+        <div class="popup-wrapper" id="popup">
+            <div class="popup-container">
+                <form action="" method="post" class="popup-form">
+                    <div class="input-group">
+                        <div class="container">
+                            <form>
+                                <div class="row mb-3">
+
+                                    <label for="inputnumber3" class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputnumber3">
+                                        <p class="bayar"><b>Kelas</b></p>
+
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control kelas" aria-label="Text input with dropdown button">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Kirim" name="">
+                            </form>
+                        </div>
+                    </div>
+                    <a class="popup-close" href="#closed">X</a>
+                </form>
+            </div>
+        </div>
     </div>
     <!-- ./wrapper -->
 
