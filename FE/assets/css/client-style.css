@@ -78,8 +78,6 @@ label {
     padding: 20px;
     margin-left: 60px;
     color: white;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .hai {
@@ -134,4 +132,17 @@ label {
     background-color: white;
     border-radius: 5px;
     padding-left: 5px;
+}
+
+@media screen and (min-width:768px) {
+    .header {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ikon {
+        float: right !important;
+    }
+    .hai {
+        width: 90%;
+    }
 }
