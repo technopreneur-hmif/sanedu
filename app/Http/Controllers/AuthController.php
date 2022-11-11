@@ -162,34 +162,4 @@ class AuthController extends Controller
             return redirect('pendaftaranortu')->with('password','Password tidak sama harap ulangi');
         }
     }
-
-    public function verifikasi(){
-        $data = User::where('status','2')->get();
-        $siswa = User::where('wa_siswa',null)->get();
-        return view('cms.verifikasi',compact('data','siswa'));
-    }
-
-    public function destroy($id){
-        try{
-
-            $data = User::where('id', $id)->first();
-            $data->delete();
-        } catch(Exception $ex){
-            return redirect('verifikasi')->with('error', 'Gagal Hapus Data!');
-        }
-        return redirect('verifikasi')->with('sukses', 'Berhasil Hapus Data!');
-    }
-
-    public function verifikasi_update($id){
-        try{
-            $upd = User::findOrFail($id);
-            $upd->update([
-                'status' => '1'
-            ]);
-        } catch(Exception $ex){
-            return redirect('verifikasi')->with('error', 'Gagal Update Data!');
-        }
-        return redirect('verifikasi')->with('sukses', 'Berhasil Update Data!');
-
-    }
 }

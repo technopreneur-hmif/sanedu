@@ -11,14 +11,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Admin</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="assets/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
     <!-- Style Css -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/user-style.css">
-    <link href="{{ asset('assets') }}/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/user-style.css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
 
 </head>
 
@@ -112,12 +112,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <div class="button">
-            <a class="btn btn-primary verif" href="#" role="button">Verifikasi Akun</a>
-            <a class="btn btn-primary" href="#" role="button">Siswa</a>
-            <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
-            <a class="btn btn-primary" href="#" role="button">Kelas</a>
+            <a class="btn btn-primary verif" href="verif-akun.html" role="button">Verifikasi Akun</a>
+            <a class="btn btn-primary" href="siswa.html" role="button">Siswa</a>
+            <a class="btn btn-primary" href="ortu.html" role="button">Orang Tua</a>
+            <a class="btn btn-primary" href="kelas.html" role="button">Kelas</a>
         </div>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
@@ -143,39 +142,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </th>
                         </tr>
                     </thead>
-                    @foreach($data as $result)
+
                     <tr>
                         <td>
-                            {{ $result->nama }}
+                            Algino
                         </td>
                         <td>
-                            @if($result->roles_id=='1')
-                            {{ $result->wa_user }}
-                            @elseif($result->roles_id=='2')
-                            {{ $result->wa_user }}
-                            @endif
+                            082176760909
                         </td>
                         <td>
-                            {{ $result->hubungan }}
+                            Ayah
                         </td>
                         <td>
-                            @foreach($siswa as $s)
-                            @if($s->wa_user==$result->wa_siswa)
-                                {{ $s->nama }}
-                            @endif
-                            @endforeach
-                        </td>
-                        <td>
-                            <div class="col-md-13">
-                                <a href="verifikasi/verifikasi_edit/{{ $result->id }}"><button type="button" class="btn btn-success">Acc</button></a>
-                                <a href="verifikasi/delete/{{ $result->id }}"><button type="button" class="btn btn-danger">Tolak</button></a>
-                            </div>
+                            Margaun
                         </td>
                         <td>
                             <div class="col-md-13">
                                 <div class="dropdown">
                                     <div class="kiri">
-                                        <a class="btn btn-success" data-toggle="modal" href="#popup" role="button">Acc</a>
+                                        <a class="btn btn-success" href="#popup" role="button">Acc</a>
                                     </div>
                                     <div class="kanan">
                                         <a class="btn btn-danger" href="" role="button">Tolak</a>
@@ -184,28 +169,156 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    <tr>
+                        <td>
+                            Margaun
+                        </td>
+                        <td>
+                            089909030392
+                        </td>
+                        <td>
+                            Wali
+                        </td>
+                        <td>
+                            Lis
+                        </td>
+                        <td>
+                            <div class="col-md-13">
+                                <div class="dropdown">
+                                    <div class="kiri">
+                                        <a class="btn btn-success" href="#popup" role="button">Acc</a>
+                                    </div>
+                                    <div class="kanan">
+                                        <a class="btn btn-danger" href="" role="button">Tolak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Santina
+                        </td>
+                        <td>
+                            087682827287
+                        </td>
+                        <td>
+                            Bunda
+                        </td>
+                        <td>
+                            Argaun
+                        </td>
+                        <td>
+                            <div class="col-md-13">
+                                <div class="dropdown">
+                                    <div class="kiri">
+                                        <a class="btn btn-success" href="#popup" role="button">Acc</a>
+                                    </div>
+                                    <div class="kanan">
+                                        <a class="btn btn-danger" href="" role="button">Tolak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Argaun
+                        </td>
+                        <td>
+                            089676726278
+                        </td>
+                        <td>
+                            Siswa
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <div class="col-md-13">
+                                <div class="dropdown">
+                                    <div class="kiri">
+                                        <a class="btn btn-success" href="#popup" role="button">Acc</a>
+                                    </div>
+                                    <div class="kanan">
+                                        <a class="btn btn-danger" href="" role="button">Tolak</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    </tr>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    </tr>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
             <!-- /.content -->
         </div>
-        @if (session('sukses'))
-            <div class="alert alert-success">
-                {{ session('sukses') }}
-            </div>
-        @elseif (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
         <!-- /.content-wrapper -->
     </div>
-    <!--PopUp-->
     <div class="dropdown">
         <div class="popup-wrapper" id="popup">
             <div class="popup-container">
                 <form action="" method="post" class="popup-form">
                     <div class="input-group">
                         <div class="container">
-                            <form action="" method="POST">
+                            <form>
                                 <div class="row mb-3">
 
                                     <label for="inputnumber3" class="col-sm-3 col-form-label">Nominal dibayarkan</label>
@@ -228,7 +341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                     </div>
                                 </div>
-                                <input class="btn btn-primary" type="submit" value="Acc" name="">
+                                <input type="submit" value="Acc" name="">
                             </form>
                         </div>
                     </div>
@@ -237,16 +350,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
     </div>
-    <!--Close PopUp-->
-
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="{{ asset('assets') }}/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('assets') }}/dist/js/adminlte.min.js"></script>
+    <script src="assets/dist/js/adminlte.min.js"></script>
+
+
 </body>
 
 </html>

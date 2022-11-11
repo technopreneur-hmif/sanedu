@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKelassTable extends Migration
+class CreateNominalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateKelassTable extends Migration
      */
     public function up()
     {
-        Schema::create('kelass', function (Blueprint $table) {
+        Schema::create('nominals', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kelas',50);
-            $table->integer('jumlah');
+            $table->integer('nominal');
+            $table->string('wa_user');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateKelassTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelass');
+        Schema::dropIfExists('nominals');
     }
 }

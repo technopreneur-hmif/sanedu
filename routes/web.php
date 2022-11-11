@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthenController;
 use App\Http\Middleware\CheckRole;
@@ -35,9 +36,10 @@ Route::get('/pendaftaranortu', [AuthenController::class, 'pendaftaranortu'])->na
 Route::post('/daftarsiswa', [AuthController::class, 'daftarsiswa'])->name('daftarsiswa');
 Route::post('/daftarortu', [AuthController::class, 'daftarortu'])->name('daftarortu');
 
-Route::get('/verifikasi',[AuthController::class, 'verifikasi'])->name('verifikasi');
-Route::get('/verifikasi/update/{id}',[AuthController::class, 'verifikasi_update'])->name('verifikasi_update');
-Route::get('/verifikasi/delete/{id}',[AuthController::class, 'destroy'])->name('verifikasi_delete');
+Route::get('/verifikasi',[AdminController::class, 'verifikasi'])->name('verifikasi');
+Route::get('/verifikasi/verifikasi_edit/{id}',[AdminController::class, 'verifikasi_edit'])->name('verifikasi_edit');
+Route::post('/verifikasi/update',[AdminController::class, 'verifikasi_update'])->name('verifikasi_update');
+Route::get('/verifikasi/delete/{id}',[AdminController::class, 'destroy'])->name('verifikasi_delete');
 
 Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
 
