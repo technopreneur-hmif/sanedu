@@ -10,7 +10,7 @@
     <link href="{{ asset('assets') }}/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" >
 
-    <title>Login</title>
+    <title>Login Admin</title>
 </head>
 
 <body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -79,7 +80,7 @@ class AuthController extends Controller
         }
     }
 
-    public function check_loginnew(Request $request){
+    public function clientside(Request $request){
         $verifortu = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
         $verifsiswa = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
         if($request->roles=='1'){
@@ -120,8 +121,16 @@ class AuthController extends Controller
             return redirect('');
         }
         if(Auth::Attempt($data)){
-
-            dd($request->all());
+            if($request->roles=='1'){
+                $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
+                $siswa = User::where('wa_siswa',null)->get();
+                $presensi = Presensi::all();
+                return view('client.absensi',compact('client','siswa','presensi'));
+            }else{
+                $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
+                $presensi = Presensi::all();
+                return view('client.absensi',compact('client','presensi'));
+            }
         }else{
             return redirect('');
         }

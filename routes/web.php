@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthenController;
+use App\Http\Controllers\ClientController;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ Route::post('/login', [AuthController::class, 'index'])->name('login');
 Route::get('/loginadmin', [AuthController::class, 'loginadmin'])->name('loginadmin');
 Route::post('/daftar_ortu', [AuthController::class, 'daftar_ortu'])->name('daftar_ortu');
 Route::post('/check_login', [AuthController::class, 'check_login'])->name('check_login');
-Route::post('/check_loginnew', [AuthController::class, 'check_loginnew'])->name('check_loginnew');
+Route::post('/clientside', [AuthController::class, 'clientside'])->name('clientside');
 Route::post('/check_loginadmin', [AuthController::class, 'check_loginadmin'])->name('check_loginadmin');
 
 
@@ -40,6 +41,9 @@ Route::get('/verifikasi',[AdminController::class, 'verifikasi'])->name('verifika
 Route::get('/verifikasi/verifikasi_edit/{id}',[AdminController::class, 'verifikasi_edit'])->name('verifikasi_edit');
 Route::post('/verifikasi/update',[AdminController::class, 'verifikasi_update'])->name('verifikasi_update');
 Route::get('/verifikasi/delete/{id}',[AdminController::class, 'destroy'])->name('verifikasi_delete');
+
+Route::get('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
+Route::get('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
 
 Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
 

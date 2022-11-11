@@ -171,18 +171,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <a href="verifikasi/delete/{{ $result->id }}"><button type="button" class="btn btn-danger">Tolak</button></a>
                             </div>
                         </td>
-                        <td>
-                            <div class="col-md-13">
-                                <div class="dropdown">
-                                    <div class="kiri">
-                                        <a class="btn btn-success" data-toggle="modal" href="#popup" role="button">Acc</a>
-                                    </div>
-                                    <div class="kanan">
-                                        <a class="btn btn-danger" href="" role="button">Tolak</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
                     </tr>
                     @endforeach
             <!-- /.content -->
@@ -198,46 +186,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @endif
         <!-- /.content-wrapper -->
     </div>
-    <!--PopUp-->
-    <div class="dropdown">
-        <div class="popup-wrapper" id="popup">
-            <div class="popup-container">
-                <form action="" method="post" class="popup-form">
-                    <div class="input-group">
-                        <div class="container">
-                            <form action="" method="POST">
-                                <div class="row mb-3">
-
-                                    <label for="inputnumber3" class="col-sm-3 col-form-label">Nominal dibayarkan</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputnumber3">
-                                        <p class="bayar"><b>Kelas</b></p>
-
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control kelas" aria-label="Text input with dropdown button">
-                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input class="btn btn-primary" type="submit" value="Acc" name="">
-                            </form>
-                        </div>
-                    </div>
-                    <a class="popup-close" href="#closed">X</a>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--Close PopUp-->
 
     <!-- ./wrapper -->
 
