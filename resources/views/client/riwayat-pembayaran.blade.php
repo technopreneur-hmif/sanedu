@@ -67,7 +67,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="keuangan">
             <div class="pembayaran">
                 <h6>Pembayaran</h6>
-                <p><b>Rp. 500.000</b></p>
+                <p><b>Rp.
+                    @if($nominal!=null)
+                    {{ $nominal->nominal }}
+                    @endif
+                </b></p>
             </div>
             <div class="kekurangan">
                 <h6>Kekurangan</h6>
@@ -134,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </th>
                             </tr>
                         </thead>
-                        @foreach($pembayaran as $p)
+                        @foreach($bayar as $p)
                         <tr>
                             <td>
                                 {{ $p->tanggal_pembayaran }}

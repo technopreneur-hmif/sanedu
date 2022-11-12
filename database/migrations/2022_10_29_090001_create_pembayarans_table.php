@@ -21,6 +21,7 @@ class CreatePembayaransTable extends Migration
             $table->string('status',20);
             $table->string('bukti_pembayaran',250);
             $table->string('keterangan',250);
+            $table->string('wa_user',200);
             $table->timestamps();
         });
     }

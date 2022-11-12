@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nominal;
+use App\Models\Pembayaran;
 use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -126,12 +128,17 @@ class AuthController extends Controller
                 $password = $request->password;
                 $siswa = User::where('wa_siswa',null)->get();
                 $presensi = Presensi::all();
-                return view('client.absensi',compact('client','siswa','presensi','password'));
+                $nominal = Nominal::where('wa_user',$request->no_wa)->first();
+                $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
+                return view('client.absensi',compact('client','siswa','presensi','password','nominal','pembayaran'));
             }else{
                 $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
+                $ortu = User::where('wa_siswa',$client->wa_user)->first();
                 $password = $request->password;
                 $presensi = Presensi::all();
-                return view('client.absensi',compact('client','presensi','password'));
+                $nominal = Nominal::where('wa_user',$ortu->wa_user)->first();
+                $pembayaran = Pembayaran::where('wa_user',$ortu->wa_user)->first();
+                return view('client.absensi',compact('client','presensi','password','nominal','pembayaran'));
             }
         }else{
             return redirect('');

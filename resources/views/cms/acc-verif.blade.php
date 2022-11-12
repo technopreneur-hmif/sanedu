@@ -34,7 +34,7 @@
                       </select>
             </div>
             <input type="text" name="id" value="{{ $verif->id }}" hidden>
-            <input type="text" name="wa_siswa" value="{{ $verif->wa_siswa }}">
+            <input type="text" name="wa_siswa" value="{{ $verif->wa_siswa }}" hidden>
             <input type="text" name="wa_user" value="{{ $verif->wa_user }}" hidden>
             <button type="submit" class="btn btn-primary">Acc</button>
         </form>

@@ -20,6 +20,7 @@ class CreatePresensisTable extends Migration
             $table->time('waktu_masuk');
             $table->time('waktu_submit');
             $table->string('keterangan',50);
+            $table->string('wa_user',100);
         });
     }
 
