@@ -42,8 +42,8 @@ Route::get('/verifikasi/verifikasi_edit/{id}',[AdminController::class, 'verifika
 Route::post('/verifikasi/update',[AdminController::class, 'verifikasi_update'])->name('verifikasi_update');
 Route::get('/verifikasi/delete/{id}',[AdminController::class, 'destroy'])->name('verifikasi_delete');
 
-Route::get('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
-Route::get('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
+Route::post('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
+Route::post('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
 
 Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
 

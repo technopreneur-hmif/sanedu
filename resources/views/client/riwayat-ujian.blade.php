@@ -27,8 +27,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
         <div class="header">
             <div class="hai">
-                <h2>Hai Bunda Alfa</h2>
-                <p>Biaya Pendampingan Alfa</p>
+                <h2>Hai,
+                    @if($client->hubungan!=null)
+                    {{ $client->hubungan }}
+                    @foreach($siswa as $s)
+                        @if($s->wa_user==$client->wa_siswa)
+                            {{ $s->nama }}
+                        @endif
+                    @endforeach
+                    @else
+                    {{ $client->nama }}
+                    @endif
+                </h2>
+                <p>Biaya Pendampingan
+                    @if($client->hubungan!=null)
+                    @foreach($siswa as $s)
+                        @if($s->wa_user==$client->wa_siswa)
+                            {{ $s->nama }}
+                        @endif
+                    @endforeach
+                    @else
+                    {{ $client->nama }}
+                    @endif
+                </p>
                 <p><b>Rp. 3.500.000</b></p>
             </div>
             <div class="ikon">
@@ -36,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="tombol" href="#"><i class="fa-solid fa-qrcode fa-2x"></i></a>
                 </div>
                 <div class="wa">
-                    <a class="tombol" href="#"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
+                    <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
                 <div class="wallet">
                     <a class="tombol" href="#"><i class="fa-solid fa-wallet fa-2x"></i></a>
@@ -55,10 +76,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <div class="container">
 
-            <div class="button">
-                <a class="btn btn-primary " href="absensi.html" role="button">Absensi Siswa</a>
-                <a class="btn btn-primary " href="riwayat-pembayaran.html" role="button">Riwayat Pembayaran</a>
-                <a class="btn btn-primary verif" href="riwayat-ujian.html" role="button">Riwayat Ujian</a>
+            <div class="upp">
+                <form method="post" action="{{ route('riwayat_ujian') }}">
+                    @csrf
+                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
+                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
+                    <input type="hidden" name="password" value="{{ $password }}">
+                    <button type="submit" class="btn btn-primary verif" role="button">Riwayat Ujian</button>
+                </form>
+                <form method="post" action="{{ route('riwayat_pembayaran') }}">
+                    @csrf
+                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
+                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
+                    <input type="hidden" name="password" value="{{ $password }}">
+                    <button type="submit" class="btn btn-primary" role="button">Riwayat Pembayaran</button>
+                </form>
+                <form method="post" action="{{ route('clientside') }}">
+                    @csrf
+                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
+                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
+                    <input type="hidden" name="password" value="{{ $password }}">
+                    <button type="submit" class="btn btn-primary" role="button">Absensi Siswa</button>
+                </form>
             </div>
             <form action="#">
                 <select name="classroom" id="lang">
@@ -101,165 +140,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </th>
                             </tr>
                         </thead>
-
+                        @foreach($ujian as $u)
                         <tr>
                             <td>
-                                21-Okt-2022
+                                {{ $u->tanggal_ujian }}
                             </td>
                             <td>
-                                Semua Pelajaran
+                                {{ $u->mapel }}
                             </td>
                             <td>
-                                35
+                                {{ $u->jml_benar+$u->jml_salah+$u->jml_kosong }}
                             </td>
                             <td>
-                                -
+                                {{ $u->jml_benar }}
                             </td>
                             <td>
-                                -
+                                {{ $u->jml_salah }}
                             </td>
                             <td>
-                                -
+                                {{ $u->jml_kosong }}
                             </td>
                             <td>
-                                -
+                                {{ $u->nilai }}
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                19-Okt-2022
-                            </td>
-                            <td>
-                                Semua Pelajaran
-                            </td>
-                            <td>
-                                35
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                17-Okt-2022
-                            </td>
-                            <td>
-                                Semua Pelajaran
-                            </td>
-                            <td>
-                                35
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                15-Okt-2022
-                            </td>
-                            <td>
-                                Semua Pelajaran
-                            </td>
-                            <td>
-                                35
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                            <td>
-                                -
-                            </td>
-                        </tr>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        </tr>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        </tr>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        <td>
-                            -
-                        </td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

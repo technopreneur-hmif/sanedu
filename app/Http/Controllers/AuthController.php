@@ -81,14 +81,13 @@ class AuthController extends Controller
     }
 
     public function clientside(Request $request){
-        $verifortu = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
-        $verifsiswa = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
         if($request->roles=='1'){
-            if($verifortu==true && $request->roles=='1'){
-                if($verifortu->status!='1'){
+            $verif = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
+            if($verif==true && $request->roles=='1'){
+                if($verif->status!='1'){
                     return redirect('loginortu')->with('akun','Akun anda belum diverifikasi, harap hubungi admin');
                 }
-                if(!Hash::check($request->password,$verifortu->password)){
+                if(!Hash::check($request->password,$verif->password)){
                     return redirect('loginortu')->with('password','Password salah, jika lupa hubungi admin');
                 }
                 else{
@@ -101,11 +100,12 @@ class AuthController extends Controller
                 return redirect('loginortu')->with('nomor','Nomor tidak sesuai');
             }
         }else if($request->roles=='2'){
-            if($verifsiswa==true && $request->roles=='2'){
-                if($verifsiswa->status!='1'){
+            $verif = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
+            if($verif==true && $request->roles=='2'){
+                if($verif->status!='1'){
                     return redirect('loginsiswa')->with('akun','Akun anda belum diverifikasi, harap hubungi admin');
                 }
-                if(!Hash::check($request->password,$verifsiswa->password)){
+                if(!Hash::check($request->password,$verif->password)){
                     return redirect('loginsiswa')->with('password','Password salah, jika lupa hubungi admin');
                 }
                 else{
@@ -123,13 +123,15 @@ class AuthController extends Controller
         if(Auth::Attempt($data)){
             if($request->roles=='1'){
                 $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
+                $password = $request->password;
                 $siswa = User::where('wa_siswa',null)->get();
                 $presensi = Presensi::all();
-                return view('client.absensi',compact('client','siswa','presensi'));
+                return view('client.absensi',compact('client','siswa','presensi','password'));
             }else{
                 $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
+                $password = $request->password;
                 $presensi = Presensi::all();
-                return view('client.absensi',compact('client','presensi'));
+                return view('client.absensi',compact('client','presensi','password'));
             }
         }else{
             return redirect('');
