@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/test', function () {
+    return view('layouts.cms.app');
+});
+
 Route::post('/login', [AuthController::class, 'index'])->name('login');
 Route::get('/loginadmin', [AuthController::class, 'loginadmin'])->name('loginadmin');
 Route::post('/daftar_ortu', [AuthController::class, 'daftar_ortu'])->name('daftar_ortu');
