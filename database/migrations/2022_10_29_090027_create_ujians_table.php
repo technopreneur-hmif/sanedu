@@ -21,6 +21,7 @@ class CreateUjiansTable extends Migration
             $table->integer('jml_salah');
             $table->integer('jml_kosong');
             $table->integer('nilai');
+            $table->string('wa_user',200);
             $table->timestamps();
         });
     }
