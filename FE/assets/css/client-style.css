@@ -1,6 +1,6 @@
 .btn-primary {
     display: inline-block;
-    width: auto;
+    width: 180px;
     margin-top: 10px;
     border-style: none !important;
 }
@@ -29,6 +29,7 @@ form {
 
 .dropdown {
     display: flex;
+    background-color: #0275d8;
 }
 
 .kanan {
@@ -75,21 +76,28 @@ label {
 }
 
 .header {
-    padding: 20px;
-    margin-left: 60px;
+    /* padding: 20px; */
+    /* margin-left: 60px; */
     color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrap-header {
+    padding: 0px 100px;
+    box-sizing: border-box;
 }
 
 .hai {
-    padding: 20px;
+    padding: 20px 0px;
     color: white;
+    max-width: 300px !important;
 }
 
 .ikon {
     padding: 20px;
     color: white;
-    float: right;
-    margin-left: 1000px;
+    /* float: right; */
 }
 
 .qr {
@@ -109,12 +117,13 @@ label {
 }
 
 .keuangan {
-    padding: 20px;
-    margin-left: 80px;
+    padding-top: 20px;
+    /* margin-left: 80px; */
     color: black;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 50px;
+    /* width: 100%; */
 }
 
 .pembayaran {
@@ -134,8 +143,58 @@ label {
     padding-left: 5px;
 }
 
-.upp {
-    margin-right: 55%;
+.verif-bayar {
+    padding: 100px;
+}
+
+.kurang {
+    background-color: #B2B2B2;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.wrap-verif {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+}
+
+.rek {
+    background-color: #B2B2B2;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.upload-bayar {
+    display: flex;
+}
+
+.upload-bukti {
+    width: 100% !important;
+}
+
+.wrap-upload {
+    margin: auto;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+}
+
+.form-control {
+    width: 100px;
+}
+
+.col-form-label {
+    width: 100% !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -148,5 +207,96 @@ label {
     }
     .hai {
         width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .popup-container {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .popup-container {
+        width: 100%;
+    }
+    form {
+        margin-top: 20px;
+    }
+    .wrap-header {
+        padding: 0px 25px;
+        /* box-sizing: border-box; */
+    }
+}
+
+@media (max-width: 767px) {
+    .popup-container {
+        width: 100%;
+    }
+    .keuangan {
+        margin: 20px;
+    }
+    .btn-primary {
+        width: 50%;
+    }
+    form {
+        margin-top: 20px;
+    }
+    .hai {
+        padding: 0px;
+    }
+    /* .form-control {
+        width: 250px !important;
+    } */
+}
+
+
+/* style untuk isi popup */
+
+.input-group .container {
+    background-color: white;
+}
+
+label {
+    width: 100%;
+    margin-left: 1px;
+    font-weight: bold;
+}
+
+.kelas {
+    width: 80px !important;
+}
+
+.bayar {
+    width: 100px;
+    padding-top: 10px;
+}
+
+
+/* hp */
+
+@media screen and (max-width:414px) {
+    .popup-container {
+        width: 100%;
+    }
+    form {
+        margin-top: 20px;
+    }
+    .wrap-header {
+        padding: 0px 10px;
+        /* box-sizing: border-box; */
+    }
+}
+
+@media screen and (max-width:375px) {
+    .popup-container {
+        width: 100%;
+    }
+    form {
+        margin-top: 10px;
+    }
+    .wrap-header {
+        padding: 0px 20px;
+        /* box-sizing: border-box; */
     }
 }
