@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <div class="kekurangan">
                 <h6>Kekurangan</h6>
-                <p><b>Rp. 3.000.000</b></p>
+                <p><b>Rp. {{ $kekurangan }}</b></p>
             </div>
         </div>
         <div class="container">

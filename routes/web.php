@@ -48,6 +48,7 @@ Route::get('/verifikasi/delete/{id}',[AdminController::class, 'destroy'])->name(
 
 Route::post('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
 Route::post('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
+Route::get('/pembayaran',[ClientController::class, 'pembayaran'])->name('pembayaran');
 
 Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
 

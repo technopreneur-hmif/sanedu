@@ -19,7 +19,8 @@ class ClientController extends Controller
             $bayar = Pembayaran::where('wa_user',$request->no_wa)->get();
             $nominal = Nominal::where('wa_user',$request->no_wa)->first();
             $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
-            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','pembayaran','password','nominal'));
+            $kekurangan = $nominal->nominal - $pembayaran->nominal;
+            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','pembayaran','password','nominal','kekurangan'));
         }else{
             $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
             $ortu = User::where('wa_siswa',$client->wa_user)->first();
@@ -27,7 +28,8 @@ class ClientController extends Controller
             $bayar = Pembayaran::where('wa_user',$request->wa_user)->get();
             $nominal = Nominal::where('wa_user',$ortu->wa_user)->first();
             $pembayaran = Pembayaran::where('wa_user',$ortu->wa_user)->first();
-            return view('client.riwayat-pembayaran',compact('client','bayar','pembayaran','password','nominal'));
+            $kekurangan = $nominal->nominal - $pembayaran->nominal;
+            return view('client.riwayat-pembayaran',compact('client','bayar','pembayaran','password','nominal','kekurangan'));
         }
     }
 
@@ -39,7 +41,8 @@ class ClientController extends Controller
             $ujian = Ujian::where('wa_user',$request->no_wa)->get();;
             $nominal = Nominal::where('wa_user',$request->no_wa)->first();
             $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
-            return view('client.riwayat-ujian',compact('client','siswa','ujian','password','nominal','pembayaran'));
+            $kekurangan = $nominal->nominal - $pembayaran->nominal;
+            return view('client.riwayat-ujian',compact('client','siswa','ujian','password','nominal','pembayaran','kekurangan'));
         }else{
             $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
             $ortu = User::where('wa_siswa',$client->wa_user)->first();
@@ -47,7 +50,12 @@ class ClientController extends Controller
             $ujian = Ujian::where('wa_user',$request->wa_user)->get();
             $nominal = Nominal::where('wa_user',$ortu->wa_user)->first();
             $pembayaran = Pembayaran::where('wa_user',$ortu->wa_user)->first();
-            return view('client.riwayat-ujian',compact('client','ujian','password','nominal','pembayaran'));
+            $kekurangan = $nominal->nominal - $pembayaran->nominal;
+            return view('client.riwayat-ujian',compact('client','ujian','password','nominal','pembayaran','kekurangan'));
         }
+    }
+
+    public function pembayaran(){
+        return view('client.pembayaran');
     }
 }

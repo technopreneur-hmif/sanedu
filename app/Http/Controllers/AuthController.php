@@ -130,7 +130,8 @@ class AuthController extends Controller
                 $presensi = Presensi::where('wa_user',$request->no_wa)->get();
                 $nominal = Nominal::where('wa_user',$request->no_wa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
-                return view('client.absensi',compact('client','siswa','presensi','password','nominal','pembayaran'));
+                $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                return view('client.absensi',compact('client','siswa','presensi','password','nominal','pembayaran','kekurangan'));
             }else{
                 $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
                 $ortu = User::where('wa_siswa',$client->wa_user)->first();
@@ -138,7 +139,8 @@ class AuthController extends Controller
                 $presensi = Presensi::where('wa_user',$request->wa_user)->get();
                 $nominal = Nominal::where('wa_user',$ortu->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',$ortu->wa_user)->first();
-                return view('client.absensi',compact('client','presensi','password','nominal','pembayaran'));
+                $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                return view('client.absensi',compact('client','presensi','password','nominal','pembayaran','kekurangan'));
             }
         }else{
             return redirect('');

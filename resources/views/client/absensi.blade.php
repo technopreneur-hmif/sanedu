@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
                 <div class="wallet">
-                    <a class="tombol" href="#"><i class="fa-solid fa-wallet fa-2x"></i></a>
+                    <a class="tombol" href="{{ route('pembayaran') }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <div class="kekurangan">
                 <h6>Kekurangan</h6>
-                <p><b>Rp. 3.000.000</b></p>
+                <p><b>Rp. {{ $kekurangan }}</b></p>
             </div>
         </div>
         <div class="container">

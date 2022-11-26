@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload Pembayaran</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/fontawesome/css/all.min.css">
+    <!-- Theme style -->
+
+    <!-- Style Css -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/client-style.css">
+    <link href="{{ asset('assets') }}/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="upload-bayar">
+        <div class="wrap-upload">
+            <div class="row mb-3 mt-5 w-100">
+                <label for="inputnumber3" class="col-sm-3 col-form-label p-0">Nominal yang dibayarkan</label>
+                <div class="col-sm-12 p-0">
+                    <input type="text" class="form-control" id="inputnumber3">
+                </div>
+            </div>
+            <label for="inputnumber3" class="col-sm-3 col-form-label">Upload bukti pembayaran</label>
+            <div class="upload-bukti">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Upload bukti pembayaran.jpg
+            </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-primary mt-5" href="upload-pembayaran.html" role="button">Kirim</a>
+        </div>
+    </div>
+</body>
+
+</html>
