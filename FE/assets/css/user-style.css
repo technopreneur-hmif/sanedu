@@ -284,3 +284,21 @@ a.popup-close {
         font-size: 10px;
     }
 }
+
+.scan-presensi {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+#btn-scan {
+    margin: auto;
+    width: 25%;
+    /* display: flex; */
+    /* margin-top: 25%; */
+}
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+}
