@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('roles_id');
             $table->integer('status');
             $table->integer('nominal')->nullable();
+            $table->string('kelas',100)->nullable();
             $table->timestamps();
         });
     }

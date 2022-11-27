@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
+    protected $fillable = [
+        'id',
+        'nama_kelas'
+    ];
     use HasFactory;
 }

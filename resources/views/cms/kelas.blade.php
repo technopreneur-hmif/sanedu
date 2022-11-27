@@ -112,13 +112,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <div class="button">
-            <a class="btn btn-primary" href="#" role="button">Verifikasi Akun</a>
-            <a class="btn btn-primary" href="#" role="button">Siswa</a>
-            <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
-            <a class="btn btn-primary" href="#" role="button">Kelas</a>
+            <a class="btn btn-primary" href="{{ route('verifikasi') }}" role="button">Verifikasi Akun</a>
+            <a class="btn btn-primary" href="{{ route('siswa') }}" role="button">Siswa</a>
+            <a class="btn btn-primary" href="{{ route('ortu') }}" role="button">Orang Tua</a>
+            <a class="btn btn-primary verif" href="{{ route('kelas') }}" role="button">Kelas</a>
         </div>
         <div class="tambahkelas" type="button">
-            <button type="button" class="btn btn-warning">Tambah Kelas</button>
+            <a href="{{ route('tambahkelas') }}"><button type="button" class="btn btn-warning">Tambah Kelas</button></a>
         </div>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -139,81 +139,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </th>
                         </tr>
                     </thead>
-
+                    @foreach($data as $kelas)
                     <tr>
                         <td>
-                            Saintek 1
+                            {{ $kelas->nama_kelas }}
                         </td>
                         <td>
-                            10
+                            {{ $kelas->jumlah }}
                         </td>
                         <td>
                             <div class="col-md-13">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                                <a href="kelas/edit/{{ $kelas->id }}"><button type="button" class="btn btn-warning">Edit</button></a>
+                                <a href="kelas/delete/{{ $kelas->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
                             </div>
                         </td>
                     </tr>
-                    <td>
-                        Saintek 2
-                    </td>
-                    <td>
-                        6
-                    </td>
-                    <td>
-                        <div class="col-md-13">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
-                            </div>
-                        </div>
-                    </td>
-                    </tr>
-                    <td>
-                        Soshum 1
-                    </td>
-                    <td>
-                        8
-                    </td>
-                    <td>
-                        <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
-                        </div>
-                    </td>
-                    </tr>
-                    <td>
-                        XI IPA 1
-                    </td>
-                    <td>
-                        10
-                    </td>
-                    <td>
-                        <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
-                        </div>
-                    </td>
-                    </tr>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    </tr>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

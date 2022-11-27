@@ -112,10 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <div class="button">
-            <a class="btn btn-primary verif" href="#" role="button">Verifikasi Akun</a>
-            <a class="btn btn-primary" href="#" role="button">Siswa</a>
-            <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
-            <a class="btn btn-primary" href="#" role="button">Kelas</a>
+            <a class="btn btn-primary verif" href="{{ route('verifikasi') }}" role="button">Verifikasi Akun</a>
+            <a class="btn btn-primary" href="{{ route('siswa') }}" role="button">Siswa</a>
+            <a class="btn btn-primary" href="{{ route('ortu') }}" role="button">Orang Tua</a>
+            <a class="btn btn-primary" href="{{ route('kelas') }}" role="button">Kelas</a>
         </div>
 
         <!-- Content Wrapper. Contains page content -->

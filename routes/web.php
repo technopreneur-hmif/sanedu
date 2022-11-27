@@ -45,6 +45,21 @@ Route::get('/verifikasi',[AdminController::class, 'verifikasi'])->name('verifika
 Route::get('/verifikasi/verifikasi_edit/{id}',[AdminController::class, 'verifikasi_edit'])->name('verifikasi_edit');
 Route::post('/verifikasi/update',[AdminController::class, 'verifikasi_update'])->name('verifikasi_update');
 Route::get('/verifikasi/delete/{id}',[AdminController::class, 'destroy'])->name('verifikasi_delete');
+Route::get('/siswa',[AdminController::class, 'siswa'])->name('siswa');
+Route::get('/siswa/edit/{id}',[AdminController::class, 'siswa_edit'])->name('siswa_edit');
+Route::post('/siswa/update',[AdminController::class, 'verif_siswa'])->name('verif_siswa');
+Route::get('/siswa/delete/{id}',[AdminController::class, 'siswa_delete'])->name('siswa_delete');
+Route::get('/ortu',[AdminController::class, 'ortu'])->name('ortu');
+Route::get('/ortu/edit/{id}',[AdminController::class, 'ortu_edit'])->name('ortu_edit');
+Route::post('/ortu/update',[AdminController::class, 'verif_ortu'])->name('verif_ortu');
+Route::get('/ortu/delete/{id}',[AdminController::class, 'ortu_delete'])->name('ortu_delete');
+Route::get('/kelas',[AdminController::class, 'kelas'])->name('kelas');
+Route::get('/kelas/edit/{id}',[AdminController::class, 'kelas_edit'])->name('kelas_edit');
+Route::post('/kelas/update',[AdminController::class, 'verif_kelas'])->name('verif_kelas');
+Route::get('/kelas/delete/{id}',[AdminController::class, 'kelas_delete'])->name('kelas_delete');
+Route::get('kelas/tambahkelas',[AdminController::class, 'tambahkelas'])->name('tambahkelas');
+
+
 
 Route::post('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
 Route::post('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');

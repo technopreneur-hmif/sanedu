@@ -112,10 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <div class="button">
-            <a class="btn btn-primary" href="#" role="button">Verifikasi Akun</a>
-            <a class="btn btn-primary" href="#" role="button">Siswa</a>
-            <a class="btn btn-primary" href="#" role="button">Orang Tua</a>
-            <a class="btn btn-primary" href="#" role="button">Kelas</a>
+            <a class="btn btn-primary" href="{{ route('verifikasi') }}" role="button">Verifikasi Akun</a>
+            <a class="btn btn-primary" href="{{ route('siswa') }}" role="button">Siswa</a>
+            <a class="btn btn-primary verif" href="{{ route('ortu') }}" role="button">Orang Tua</a>
+            <a class="btn btn-primary" href="{{ route('kelas') }}" role="button">Kelas</a>
         </div>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -142,137 +142,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </th>
                         </tr>
                     </thead>
-
+                    @foreach($data as $result)
                     <tr>
                         <td>
-                            Algino
+                            {{ $result->nama }}
                         </td>
                         <td>
-                            082176760909
+                            {{ $result->wa_user }}
                         </td>
                         <td>
-                            Ayah
+                            {{ $result->hubungan }}
                         </td>
                         <td>
-                            Koli
+                            @foreach($siswa as $s)
+                            @if($s->wa_user==$result->wa_siswa)
+                                {{ $s->nama }}
+                            @endif
+                            @endforeach
                         </td>
                         <td>
                             <div class="col-md-13">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                                <a href="ortu/edit/{{ $result->id }}"><button type="button" class="btn btn-warning">Edit</button></a>
+                                <a href="ortu/delete/{{ $result->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
                             </div>
                         </td>
                     </tr>
-                    <td>
-                        Margaun
-                    </td>
-                    <td>
-                        089909030392
-                    </td>
-                    <td>
-                        Wali
-                    </td>
-                    <td>
-                        Mokil
-                    </td>
-                    <td>
-                        <div class="col-md-13">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Hapus</button>
-                            </div>
-                        </div>
-                    </td>
-                    </tr>
-                    <td>
-                        Santina
-                    </td>
-                    <td>
-                        087682827287
-                    </td>
-                    <td>
-                        Bunda
-                    </td>
-                    <td>
-                        Tintin
-                    </td>
-                    <td>
-                        <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
-                        </div>
-                    </td>
-                    </tr>
-                    <td>
-                        Argaun
-                    </td>
-                    <td>
-                        089676726278
-                    </td>
-                    <td>
-                        Ayah
-                    </td>
-                    <td>
-                        Simbul
-                    </td>
-                    <td>
-                        <div class="col-md-13">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
-                        </div>
-                    </td>
-                    </tr>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    </tr>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    </tr>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    <td>
-                        -
-                    </td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
+            @if (session('sukses'))
+            <div class="alert alert-success">
+                {{ session('sukses') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
