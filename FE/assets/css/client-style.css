@@ -299,4 +299,15 @@ label {
         padding: 0px 20px;
         /* box-sizing: border-box; */
     }
+    .wrap-verif {
+        width: 400px;
+        padding-right: 100px;
+    }
+    .wrap-upload {
+        width: 250px;
+        margin: auto;
+    }
+    .content {
+        width: 380px;
+    }
 }
