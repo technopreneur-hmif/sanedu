@@ -143,6 +143,14 @@ label {
     padding-left: 5px;
 }
 
+.pembayaran p {
+    color: green !important;
+}
+
+.keuangan p {
+    color: red;
+}
+
 .verif-bayar {
     padding: 100px;
 }
@@ -153,6 +161,14 @@ label {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.kurang p {
+    color: red;
+}
+
+.rek p {
+    color: rgb(169, 78, 45);
 }
 
 .wrap-verif {
