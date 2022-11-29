@@ -57,13 +57,15 @@ Route::get('/kelas',[AdminController::class, 'kelas'])->name('kelas');
 Route::get('/kelas/edit/{id}',[AdminController::class, 'kelas_edit'])->name('kelas_edit');
 Route::post('/kelas/update',[AdminController::class, 'verif_kelas'])->name('verif_kelas');
 Route::get('/kelas/delete/{id}',[AdminController::class, 'kelas_delete'])->name('kelas_delete');
-Route::get('kelas/tambahkelas',[AdminController::class, 'tambahkelas'])->name('tambahkelas');
+Route::get('/kelas/tambahkelas',[AdminController::class, 'tambahkelas'])->name('tambahkelas');
 
 
 
 Route::post('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
 Route::post('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
-Route::get('/pembayaran',[ClientController::class, 'pembayaran'])->name('pembayaran');
+Route::get('/pembayaran/{id}',[ClientController::class, 'pembayaran'])->name('pembayaran');
+Route::get('/upload_pembayaran/{id}',[ClientController::class, 'upload_pembayaran'])->name('upload_pembayaran');
+Route::post('/bukti',[ClientController::class, 'bukti'])->name('bukti');
 
 Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
 

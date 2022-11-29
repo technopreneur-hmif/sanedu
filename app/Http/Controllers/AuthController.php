@@ -123,24 +123,34 @@ class AuthController extends Controller
             return redirect('');
         }
         if(Auth::Attempt($data)){
-            if($request->roles=='1'){
-                $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
+            if($request->roles=='2'){
+                $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
                 $password = $request->password;
                 $siswa = User::where('wa_siswa',null)->get();
                 $presensi = Presensi::where('wa_user',$request->no_wa)->get();
                 $nominal = Nominal::where('wa_user',$request->no_wa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
-                $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                if($nominal !=null){
+                    $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                }else{
+                    $nominal = 0;
+                    $kekurangan = 0;
+                }
                 return view('client.absensi',compact('client','siswa','presensi','password','nominal','pembayaran','kekurangan'));
             }else{
-                $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
-                $ortu = User::where('wa_siswa',$client->wa_user)->first();
+                $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
+                $siswa = User::where('wa_user',$client->wa_siswa)->first();
                 $password = $request->password;
                 $presensi = Presensi::where('wa_user',$request->wa_user)->get();
-                $nominal = Nominal::where('wa_user',$ortu->wa_user)->first();
-                $pembayaran = Pembayaran::where('wa_user',$ortu->wa_user)->first();
-                $kekurangan = $nominal->nominal - $pembayaran->nominal;
-                return view('client.absensi',compact('client','presensi','password','nominal','pembayaran','kekurangan'));
+                $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
+                $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->first();
+                if($nominal !=null){
+                    $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                }else{
+                    $nominal = 0;
+                    $kekurangan = 0;
+                }
+                return view('client.absensi',compact('client','siswa','presensi','password','nominal','pembayaran','kekurangan'));
             }
         }else{
             return redirect('');

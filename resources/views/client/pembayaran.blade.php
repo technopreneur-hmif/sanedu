@@ -24,14 +24,14 @@
             <div class="wrap-verif">
                 <div class="kurang">
                     <h6>Kekurangan Pembayaran</h6>
-                    <p><b>Rp. 500.000</b></p>
+                    <p><b>Rp. {{ $kekurangan }}</b></p>
                 </div>
                 <div class="rek">
                     <h6>Nomor Rekening Pembayaran</h6>
                     <p><b>BNI : 21213-39393-933 </b></p>
                     <p><b>MANDIRI : 21929-03033-099</b></p>
                 </div>
-                <a class="btn btn-primary" href="upload-pembayaran.html" role="button">Verifikasi Pembayaran</a>
+                <a class="btn btn-primary" href="{{ '../upload_pembayaran/'.$akun->wa_user }}" role="button">Verifikasi Pembayaran</a>
             </div>
         </div>
     </div>

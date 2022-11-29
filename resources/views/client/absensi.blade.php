@@ -29,27 +29,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h2>Hai,
                     @if($client->hubungan!=null)
                     {{ $client->hubungan }}
-                    @foreach($siswa as $s)
-                        @if($s->wa_user==$client->wa_siswa)
-                            {{ $s->nama }}
-                        @endif
-                    @endforeach
+                    @endif
+                    @if($client->hubungan!=null)
+                        {{ $siswa->nama }}
                     @else
                     {{ $client->nama }}
                     @endif
                 </h2>
                 <p>Biaya Pendampingan
                     @if($client->hubungan!=null)
-                    @foreach($siswa as $s)
-                        @if($s->wa_user==$client->wa_siswa)
-                            {{ $s->nama }}
-                        @endif
-                    @endforeach
+                        {{ $siswa->nama }}
                     @else
                     {{ $client->nama }}
                     @endif
                 </p>
-                <p><b>Rp. 3.500.000</b></p>
+                <p><b>Rp.
+                    @if($nominal!=null)
+                    {{ $nominal->nominal }}
+                    @else
+                    {{ $nominal }}
+                    @endif
+                </b></p>
             </div>
             <div class="ikon">
                 <div class="qr">
@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
                 <div class="wallet">
-                    <a class="tombol" href="{{ route('pembayaran') }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
+                    <a class="tombol" href="pembayaran/{{ $client->wa_user }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h6>Pembayaran</h6>
                 <p><b>Rp.
                     @if($nominal!=null)
-                    {{ $nominal->nominal }}
+                    {{ $pembayaran->nominal }}
                     @endif
                 </b></p>
             </div>

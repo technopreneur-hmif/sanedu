@@ -16,6 +16,7 @@ class Pembayaran extends Model
         'pembayaran_ke',
         'status',
         'bukti_pembayaran',
-        'keterangan'
+        'keterangan',
+        'wa_user'
     ];
 }
