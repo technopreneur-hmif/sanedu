@@ -21,12 +21,11 @@
 }
 
 .container {
-    width: 30%;
-    margin-top: 10%;
+    width: 50%;
 }
 
 .btn-primary {
-    margin-left: 45%;
+    margin-left: 38%;
 }
 
 .bg-primary {
@@ -72,6 +71,41 @@
     .container {
         width: 45%;
         padding-top: 18%;
+    }
+}
+
+@media screen and (max-width:653px) {
+    .footer {
+        width: 150px;
+        height: 150px;
+    }
+    .header {
+        width: 150px;
+        height: 150px;
+    }
+    .container {
+        width: 45%;
+        padding-top: 40%;
+    }
+    .btn {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .footer {
+        width: 150px;
+        height: 150px;
+    }
+    .header {
+        width: 150px;
+        height: 150px;
+    }
+    .container {
+        width: 100%;
+    }
+    .btn {
+        width: 80px;
     }
 }
 
