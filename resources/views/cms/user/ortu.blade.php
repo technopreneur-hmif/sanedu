@@ -15,7 +15,7 @@
                             <a class="btn btn-dark" href="{{ route('ortu') }}" role="button">Orang Tua</a>
                             <a class="btn btn-primary" href="{{ route('kelas') }}" role="button">Kelas</a>
                         </div>
-                    </th><th></th><th></th><th></th>
+                    </th><th></th><th></th><th></th><th></th>
                 </tr>
                         <tr>
                             <th>
