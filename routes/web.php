@@ -66,6 +66,8 @@ Route::post('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('
 Route::get('/pembayaran/{id}',[ClientController::class, 'pembayaran'])->name('pembayaran');
 Route::get('/upload_pembayaran/{id}',[ClientController::class, 'upload_pembayaran'])->name('upload_pembayaran');
 Route::post('/bukti',[ClientController::class, 'bukti'])->name('bukti');
+Route::get('/scan',[ClientController::class, 'scan'])->name('scan');
+Route::post('/validasi_qrcode',[ClientController::class, 'validasi_qrcode'])->name('validasi_qrcode');
 
 Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(function(){
 

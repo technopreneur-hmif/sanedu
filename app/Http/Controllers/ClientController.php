@@ -127,4 +127,12 @@ class ClientController extends Controller
 
         return redirect('pembayaran/'.$request->no_wa);
     }
+
+    public function scan(){
+        return view('client.scan');
+    }
+
+    public function validasi_qrcode(Request $request){
+        dd($request->all());
+    }
 }
