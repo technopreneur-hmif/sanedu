@@ -15,13 +15,13 @@ class AdminController extends Controller
     public function verifikasi(){
         $data = User::where('status','2')->get();
         $siswa = User::where('wa_siswa',null)->get();
-        return view('cms.verifikasi',compact('data','siswa'));
+        return view('cms.user.verifikasi',compact('data','siswa'));
     }
 
     public function verifikasi_edit($id){
         $verif = User::where('id',$id)->first();
         $kelas = Kelas::all();
-        return view('cms.acc-verif', compact('verif','kelas'));
+        return view('cms.user.acc-verif', compact('verif','kelas'));
     }
 
     public function verifikasi_update(Request $request){
@@ -57,13 +57,13 @@ class AdminController extends Controller
     public function siswa(){
         $data = User::where('roles_id','2')->where('status','1')->get();
         $kelas = Kelas::all();
-        return view('cms.siswa',compact('data','kelas'));
+        return view('cms.user.siswa',compact('data','kelas'));
     }
 
     public function siswa_edit($id){
         $edit = User::where('id',$id)->first();
         $kelas = Kelas::all();
-        return view('cms.siswa_edit',compact('edit','kelas'));
+        return view('cms.user.siswa_edit',compact('edit','kelas'));
     }
 
     public function verif_siswa(Request $request){
@@ -95,12 +95,12 @@ class AdminController extends Controller
     public function ortu(){
         $data = User::where('roles_id','1')->where('status','1')->get();
         $siswa = User::where('wa_siswa',null)->get();
-        return view('cms.ortu',compact('data','siswa'));
+        return view('cms.user.ortu',compact('data','siswa'));
     }
 
     public function ortu_edit($id){
         $edit = User::where('id',$id)->first();
-        return view('cms.ortu_edit',compact('edit'));
+        return view('cms.user.ortu_edit',compact('edit'));
     }
 
     public function verif_ortu(Request $request){
@@ -126,12 +126,12 @@ class AdminController extends Controller
 
     public function kelas(){
         $data = Kelas::all();
-        return view('cms.kelas',compact('data'));
+        return view('cms.user.kelas',compact('data'));
     }
 
     public function kelas_edit($id){
         $edit = Kelas::where('id',$id)->first();
-        return view('cms.kelas_edit',compact('edit'));
+        return view('cms.user.kelas_edit',compact('edit'));
     }
 
     public function verif_kelas(Request $request){
@@ -154,6 +154,6 @@ class AdminController extends Controller
     }
 
     public function tambahkelas(){
-        return view('cms.tambah_kelas');
+        return view('cms.user.tambah_kelas');
     }
 }
