@@ -17,6 +17,7 @@
 form {
     float: right;
     margin-right: 20px;
+    margin-top: 10px;
 }
 
 .ukuran {
@@ -213,6 +214,10 @@ label {
     width: 100% !important;
 }
 
+.button {
+    float: left;
+}
+
 @media screen and (min-width: 768px) {
     .header {
         display: flex;
@@ -249,21 +254,28 @@ label {
     .popup-container {
         width: 100%;
     }
-    .keuangan {
-        margin: 20px;
-    }
-    .btn-primary {
-        width: 50%;
-    }
     form {
         margin-top: 20px;
     }
     .hai {
-        padding: 0px;
+        margin-top: 3px;
     }
-    /* .form-control {
-        width: 250px !important;
-    } */
+    .btn-primary {
+        width: 170px;
+    }
+    .button {
+        margin-right: 50%;
+    }
+    .content {
+        width: 100%;
+    }
+    .wrap-header {
+        width: 100%;
+    }
+    .keuangan {
+        width: 100%;
+        margin-right: 0px;
+    }
 }
 
 
@@ -301,6 +313,18 @@ label {
     .wrap-header {
         padding: 0px 10px;
         /* box-sizing: border-box; */
+    }
+    .btn-primary {
+        width: 170px;
+    }
+    .button {
+        margin-right: 50%;
+    }
+    .content {
+        width: 100%;
+    }
+    .wrap-header {
+        width: 100%;
     }
 }
 
