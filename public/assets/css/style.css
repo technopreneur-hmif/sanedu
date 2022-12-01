@@ -6,7 +6,7 @@
     border-top-right-radius: 0px;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0
 }
 
 .footer {
@@ -17,12 +17,11 @@
     border-bottom-left-radius: 0px;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 0
 }
 
 .container {
-    width: 30%;
-    margin-top: 10%;
+    width: 50%;
 }
 
 .bg-primary {
@@ -35,4 +34,135 @@
 
 .alert-text {
     margin: auto;
+}
+
+@media screen and (max-width:576px) {
+    .footer {
+        /* width: 210px;
+        height: 210px; */
+        width: 150px;
+        height: 150px;
+    }
+    .header {
+        /* width: 210px;
+        height: 210px; */
+        width: 150px;
+        height: 150px;
+    }
+    .container {
+        width: 50%;
+        padding-top: 50%;
+    }
+}
+
+@media screen and (min-width:576px) {
+    .footer {
+        width: 240px;
+        height: 240px;
+    }
+    .header {
+        width: 240px;
+        height: 240px;
+    }
+    .container {
+        width: 45%;
+        padding-top: 18%;
+    }
+}
+
+@media screen and (max-width:653px) {
+    .footer {
+        width: 150px;
+        height: 150px;
+    }
+    .header {
+        width: 150px;
+        height: 150px;
+    }
+    .container {
+        width: 45%;
+        padding-top: 40%;
+    }
+    .btn {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .footer {
+        width: 150px;
+        height: 150px;
+    }
+    .header {
+        width: 150px;
+        height: 150px;
+    }
+    .container {
+        width: 100%;
+    }
+    .btn {
+        width: 80px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .footer {
+        width: 270px;
+        height: 270px;
+    }
+    .header {
+        width: 270px;
+        height: 270px;
+    }
+    .container {
+        /* width: 40%;
+        padding-top: 16%; */
+        width: 40%;
+        padding-top: 30%;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .footer {
+        width: 300px;
+        height: 300px;
+    }
+    .header {
+        width: 300px;
+        height: 300px;
+    }
+    .container {
+        width: 35%;
+        padding-top: 14%;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .footer {
+        width: 330px;
+        height: 330px;
+    }
+    .header {
+        width: 330px;
+        height: 330px;
+    }
+    .container {
+        width: 33%;
+        padding-top: 12%;
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .footer {
+        width: 360px;
+        height: 360px;
+    }
+    .header {
+        width: 360px;
+        height: 360px;
+    }
+    .container {
+        width: 30%;
+        padding-top: 8%;
+    }
 }
