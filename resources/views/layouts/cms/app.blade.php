@@ -34,9 +34,9 @@
 	          </li>
 
 	        </ul>
-	      </div><br><br><br>
-          <br><br><br><br>
+	      </div><br><br><br><br>
           <br><br><br><br><br>
+          <br><br><br><br><br><br><br>
     	</nav>
             @yield('content')
 		</div>

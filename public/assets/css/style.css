@@ -36,6 +36,11 @@
     margin: auto;
 }
 
+.tombol-kelas {
+    width: 0px;
+    margin: auto;
+}
+
 @media screen and (max-width:576px) {
     .footer {
         /* width: 210px;
@@ -102,6 +107,9 @@
     }
     .btn {
         width: 80px;
+    }
+    .tombol-kelas {
+        width: 100px;
     }
 }
 

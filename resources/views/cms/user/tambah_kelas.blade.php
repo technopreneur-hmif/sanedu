@@ -23,7 +23,9 @@
                     <input type="text" name="nama" class="form-control" id="inputtext3">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <div class="tombol-kelas">
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </div>
         </form>
     </div>
 

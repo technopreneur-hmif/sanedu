@@ -98,7 +98,6 @@ label {
 .ikon {
     padding: 20px;
     color: white;
-    /* float: right; */
 }
 
 .qr {
@@ -258,7 +257,7 @@ label {
         margin-top: 20px;
     }
     .hai {
-        margin-top: 3px;
+        margin-top: 5px;
     }
     .btn-primary {
         width: 170px;
@@ -275,6 +274,9 @@ label {
     .keuangan {
         width: 100%;
         margin-right: 0px;
+    }
+    .ikon {
+        width: 18%;
     }
 }
 
