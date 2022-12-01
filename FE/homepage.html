@@ -25,15 +25,25 @@
         <div class="text-center ">
             <h4>Sistem Monitoring Terintegrasi</h4>
 
-            <form action="#">
-                <select name="languages" id="lang">
-                  <option value="javascript">Siswa</option>
-                  <option value="php">Orang Tua</option>
-                </select>
+            <form method="POST" action="#">
+
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Login
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('loginortu') }}">Sebagai Orang Tua</a></li>
+                        <li><a class="dropdown-item" href="{{ route('loginsiswa') }}">Sebagai Siswa</a></li>
+                    </ul>
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Daftar
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('pendaftaranortu') }}">Sebagai Orang Tua</a></li>
+                        <li><a class="dropdown-item" href="{{ route('pendaftaransiswa') }}">Sebagai Siswa</a></li>
+                    </ul>
+                </div>
             </form>
-            <br>
-            <button class="btn bg-primary" type="submit ">Login</button>
-            <button class="btn bg-primary" type="submit ">Daftar</button>
         </div>
     </div>
     <div class="footer p-5 bg-primary ">
