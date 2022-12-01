@@ -167,6 +167,7 @@ class AuthController extends Controller
                 'roles_id' => 2,
                 'status' => 2
             ]);
+            return redirect('');
         }else if($verif==true){
             return redirect('pendaftaransiswa')->with('nomor','Nomor sudah terdaftar');
         }else if($request->password!=$request->repassword){
@@ -186,6 +187,7 @@ class AuthController extends Controller
                 'roles_id' => 1,
                 'status' => 2
             ]);
+            return redirect('');
         }else if($verif==true){
             return redirect('pendaftaranortu')->with('nomor','Nomor sudah terdaftar');
         }else if($request->password!=$request->repassword){

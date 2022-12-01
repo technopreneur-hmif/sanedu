@@ -29,17 +29,17 @@
                     <select name="kelas" class="custom-select">
                         <option selected>Pilih Kelas</option>
                         @foreach($kelas as $k)
-                        <option value="{{ $k->nama_kelas }}">{{ $k->nama_kelas }}</option>
+                        <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
                         @endforeach
-                      </select>
+                    </select>
             </div>
             <input type="text" name="id" value="{{ $verif->id }}" hidden>
             @if($verif->roles_id=='1')
-                <input type="text" name="wa_user" value="{{ $verif->wa_siswa }}">
+                <input type="text" name="wa_user" value="{{ $verif->wa_siswa }}" hidden>
             @else
-                <input type="text" name="wa_user" value="{{ $verif->wa_user }}">
+                <input type="text" name="wa_user" value="{{ $verif->wa_user }}" hidden>
             @endif
-            <input type="text" name="roles" value="{{ $verif->roles_id }}">
+            <input type="text" name="roles" value="{{ $verif->roles_id }}" hidden>
             <button type="submit" class="btn btn-primary">Acc</button>
         </form>
 

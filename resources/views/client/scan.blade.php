@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap CSS -->
     <link href="{{ asset('assets') }}/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" >
@@ -15,16 +15,13 @@
 
 <body>
     <div class="container">
-        <form action="{{ route('bukti') }}" method="POST" enctype="multipart/form-data" align="center">
-            @csrf
             <div class="row mb-3">
                 <div class="col-sm-12">
                     <label for="inputnumber3" class="col-sm-3 col-form-label">Scan Presensi</label>
                     <div id="reader" width="600px"></div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
+    </div>
 
         <!-- Optional JavaScript; choose one of the two! -->
 
@@ -39,42 +36,43 @@
     -->
 </body>
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     function onScanSuccess(decodedText, decodedResult) {
-                // alert(decodedText);
-                $('#result').val(decodedText);
-                let id = decodedText;
-                html5QrcodeScanner.clear().then(_ => {
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
+        // alert(decodedText);
+        $('#result').val(decodedText);
+        let id = decodedText;
+        html5QrcodeScanner.clear().then(_ => {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
 
-                        url: "{{ route('validasi_qrcode') }}",
-                        type: 'POST',
-                        data: {
-                            _methode : "POST",
-                            _token: CSRF_TOKEN,
-                            qr_code : id
-                        },
-                        success: function (response) {
-                            console.log(response);
-                            if(response.status == 200){
-                                alert('berhasil');
-                            }else{
-                                alert('gagal');
-                            }
+                url: "{{ route('validasi_qrcode') }}",
+                type: 'POST',
+                data: {
+                    _methode : "POST",
+                    _token: CSRF_TOKEN,
+                    qr_code : id
+                },
+                success: function (response) {
+                    console.log(response);
+                    if(response.status == 200){
+                        alert('berhasil');
+                    }else{
+                        alert('gagal');
+                    }
 
-                        }
-                    });
-                }).catch(error => {
-                    alert('something wrong');
-                });
+                }
+            });
+        }).catch(error => {
+            alert('something wrong');
+        });
 
-            }
+    }
 
     function onScanFailure(error) {
     // handle scan failure, usually better to ignore and keep scanning.
     // for example:
-        console.warn(`Code scan error = ${error}`);
+        //console.warn(`Code scan error = ${error}`);
     }
 
     let html5QrcodeScanner = new Html5QrcodeScanner(

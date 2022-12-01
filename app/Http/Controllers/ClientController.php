@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nominal;
 use App\Models\Pembayaran;
 use App\Models\Presensi;
+use App\Models\qr_code;
 use App\Models\Ujian;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -133,6 +134,16 @@ class ClientController extends Controller
     }
 
     public function validasi_qrcode(Request $request){
-        dd($request->all());
+        $qr = $request->qr_code;
+        $data = qr_code::where('tanggal',Carbon::now()->toDateString())->first();
+        if($qr == $data->token){
+            return response()->json([
+                'status' => 200,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400,
+            ]);
+        }
     }
 }

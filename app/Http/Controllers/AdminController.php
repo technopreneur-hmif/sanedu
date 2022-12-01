@@ -25,20 +25,28 @@ class AdminController extends Controller
     }
 
     public function verifikasi_update(Request $request){
-            $nominal = Nominal::where('wa_user',$request->wa_user)->first();
-            if($nominal==null){
-                Nominal::create([
-                    'nominal' => $request->nominal,
-                    'wa_user' => $request->wa_user
-                ]);
-            }
-            $nominal = Nominal::where('wa_user',$request->wa_user)->first();
-            $upd = User::where('id',$request->id)->first();
+        $nominal = Nominal::where('wa_user',$request->wa_user)->first();
+        if($nominal==null){
+            Nominal::create([
+                'nominal' => $request->nominal,
+                'wa_user' => $request->wa_user
+            ]);
+        }
+        $nominal = Nominal::where('wa_user',$request->wa_user)->first();
+        $upd = User::where('id',$request->id)->first();
+        if($request->roles==1){
             $upd->update([
                 'status' => '1',
                 'nominal' => $nominal->id
             ]);
-            return redirect('verifikasi')->with('sukses', 'Berhasil Acc Data!');
+        }else{
+            $upd->update([
+                'status' => '1',
+                'nominal' => $nominal->id,
+                'kelas' => $request->kelas
+            ]);
+        }
+        return redirect('verifikasi')->with('sukses', 'Berhasil Acc Data!');
 
     }
 
