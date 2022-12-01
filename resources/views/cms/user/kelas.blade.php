@@ -5,7 +5,7 @@
 
 @section('content')
     <!-- CONTENT -->
-        <table class="table table-sm table-striped">
+        <table class="table table-striped">
             <thead><tr><td><div style="margin: 100px;"></div></td></tr>
                 <tr>
                     <th>
@@ -15,7 +15,10 @@
                             <a class="btn btn-primary" href="{{ route('ortu') }}" role="button">Orang Tua</a>
                             <a class="btn btn-dark" href="{{ route('kelas') }}" role="button">Kelas</a>
                         </div>
-                    </th><th></th><th></th><th></th>
+                    </th><th></th>
+                    <th>
+                        <a href="kelas/tambahkelas"><button type="button" class="btn btn-warning">Tambah Kelas</button></a>
+                    </th>
                 </tr>
                 <tr>
                     <th>

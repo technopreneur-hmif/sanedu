@@ -5,7 +5,7 @@
 
 @section('content')
     <!-- CONTENT -->
-        <table class="table table-sm table-striped">
+        <table class="table table-striped">
             <thead><tr><td><div style="margin: 100px;"></div></td></tr>
                 <tr>
                     <th>
@@ -35,6 +35,7 @@
                     </th>
                 </tr>
             </thead>
+            <tbody>
             @foreach($data as $result)
             <tr>
                 <td>
@@ -69,6 +70,7 @@
                 </td>
             </tr>
             @endforeach
+            </tbody>
         </table>
         <div>
         @if (session('sukses'))
