@@ -34,8 +34,12 @@
                       </select>
             </div>
             <input type="text" name="id" value="{{ $verif->id }}" hidden>
-            <input type="text" name="wa_siswa" value="{{ $verif->wa_siswa }}" hidden>
-            <input type="text" name="wa_user" value="{{ $verif->wa_user }}" hidden>
+            @if($verif->roles_id=='1')
+                <input type="text" name="wa_user" value="{{ $verif->wa_siswa }}">
+            @else
+                <input type="text" name="wa_user" value="{{ $verif->wa_user }}">
+            @endif
+            <input type="text" name="roles" value="{{ $verif->roles_id }}">
             <button type="submit" class="btn btn-primary">Acc</button>
         </form>
 

@@ -25,18 +25,17 @@ class AdminController extends Controller
     }
 
     public function verifikasi_update(Request $request){
-            Nominal::create([
-                'nominal' => $request->nominal,
-                'wa_user' => $request->wa_user
-            ]);
+            $nominal = Nominal::where('wa_user',$request->wa_user)->first();
+            if($nominal==null){
+                Nominal::create([
+                    'nominal' => $request->nominal,
+                    'wa_user' => $request->wa_user
+                ]);
+            }
             $nominal = Nominal::where('wa_user',$request->wa_user)->first();
             $upd = User::where('id',$request->id)->first();
             $upd->update([
                 'status' => '1',
-                'nominal' => $nominal->id
-            ]);
-            $siswa = User::where('wa_user',$request->wa_siswa)->first();
-            $siswa->update([
                 'nominal' => $nominal->id
             ]);
             return redirect('verifikasi')->with('sukses', 'Berhasil Acc Data!');

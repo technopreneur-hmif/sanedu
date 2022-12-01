@@ -48,7 +48,11 @@
                     @endif
                 </td>
                 <td>
+                    @if($result->roles_id=='1')
                     {{ $result->hubungan }}
+                    @else
+                    Siswa
+                    @endif
                 </td>
                 <td>
                     @foreach($siswa as $s)
