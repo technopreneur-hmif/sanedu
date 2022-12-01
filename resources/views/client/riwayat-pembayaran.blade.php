@@ -24,6 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body>
     <div class="content">
         <div class="header">
+        <div class="wrap-header">
             <div class="hai">
                 <h2>Hai,
                     @if($client->hubungan!=null)
@@ -76,9 +77,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p><b>Rp. {{ $kekurangan }}</b></p>
             </div>
         </div>
+        </div>
         <div class="container">
 
-            <div class="upp">
+            <div class="button">
                 <form method="post" action="{{ route('riwayat_ujian') }}">
                     @csrf
                     <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
