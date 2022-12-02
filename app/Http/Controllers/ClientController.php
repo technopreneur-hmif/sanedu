@@ -20,14 +20,18 @@ class ClientController extends Controller
             $siswa = User::where('wa_siswa',null)->get();
             $bayar = Pembayaran::where('wa_user',$request->no_wa)->get();
             $nominal = Nominal::where('wa_user',$request->no_wa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
-            if($nominal !=null){
-                $kekurangan = $nominal->nominal - $pembayaran->nominal;
-            }else{
-                $nominal = 0;
-                $kekurangan = 0;
-            }
-            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','pembayaran','password','nominal','kekurangan'));
+            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->get();
+            $total = 0;
+                if($nominal !=null){
+                    foreach($pembayaran as $pem){
+                        $total = $total + $pem->nominal;
+                    }
+                    $kekurangan = $nominal->nominal - $total;
+                }else{
+                    $nominal = 0;
+                    $kekurangan = 0;
+                }
+            return view('client.riwayat-pembayaran',compact('client','siswa','total','bayar','pembayaran','password','nominal','kekurangan'));
         }else{
             $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
             $siswa = User::where('wa_user',$client->wa_siswa)->first();
@@ -35,14 +39,18 @@ class ClientController extends Controller
             $password = $request->password;
             $bayar = Pembayaran::where('wa_user',$client->wa_siswa)->get();
             $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->first();
+            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+            $total = 0;
                 if($nominal !=null){
-                    $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                    foreach($pembayaran as $pem){
+                        $total = $total + $pem->nominal;
+                    }
+                    $kekurangan = $nominal->nominal - $total;
                 }else{
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','pembayaran','password','nominal','kekurangan'));
+            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','total','pembayaran','password','nominal','kekurangan'));
         }
     }
 
@@ -53,9 +61,18 @@ class ClientController extends Controller
             $siswa = User::where('wa_siswa',null)->get();
             $ujian = Ujian::where('wa_user',$request->no_wa)->get();;
             $nominal = Nominal::where('wa_user',$request->no_wa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->first();
-            $kekurangan = $nominal->nominal - $pembayaran->nominal;
-            return view('client.riwayat-ujian',compact('client','siswa','ujian','password','nominal','pembayaran','kekurangan'));
+            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->get();
+            $total = 0;
+                if($nominal !=null){
+                    foreach($pembayaran as $pem){
+                        $total = $total + $pem->nominal;
+                    }
+                    $kekurangan = $nominal->nominal - $total;
+                }else{
+                    $nominal = 0;
+                    $kekurangan = 0;
+                }
+            return view('client.riwayat-ujian',compact('client','siswa','total','ujian','password','nominal','pembayaran','kekurangan'));
         }else{
             $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
             $siswa = User::where('wa_user',$client->wa_siswa)->first();
@@ -63,14 +80,18 @@ class ClientController extends Controller
             $password = $request->password;
             $ujian = Ujian::where('wa_user',$request->wa_user)->get();
             $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->first();
+            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+            $total = 0;
                 if($nominal !=null){
-                    $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                    foreach($pembayaran as $pem){
+                        $total = $total + $pem->nominal;
+                    }
+                    $kekurangan = $nominal->nominal - $total;
                 }else{
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-            return view('client.riwayat-ujian',compact('client','siswa','ujian','password','nominal','pembayaran','kekurangan'));
+            return view('client.riwayat-ujian',compact('client','siswa','total','ujian','password','nominal','pembayaran','kekurangan'));
         }
     }
 

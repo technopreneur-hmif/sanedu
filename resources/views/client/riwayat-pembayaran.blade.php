@@ -52,9 +52,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </b></p>
             </div>
             <div class="ikon">
+                @if($client->roles_id==2)
                 <div class="qr">
-                    <a class="tombol" href="#"><i class="fa-solid fa-qrcode fa-2x"></i></a>
+                    <a class="tombol" href="{{ route('scan') }}"><i class="fa-solid fa-qrcode fa-2x"></i></a>
                 </div>
+                @endif
                 <div class="wa">
                     <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
@@ -68,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h6>Pembayaran</h6>
                 <p><b>Rp.
                     @if($nominal!=null)
-                    {{ $pembayaran->nominal }}
+                    {{ $total }}
                     @endif
                 </b></p>
             </div>
