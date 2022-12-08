@@ -20,7 +20,7 @@ class ClientController extends Controller
             $siswa = User::where('wa_siswa',null)->get();
             $bayar = Pembayaran::where('wa_user',$request->no_wa)->get();
             $nominal = Nominal::where('wa_user',$request->no_wa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->get();
+            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -39,7 +39,7 @@ class ClientController extends Controller
             $password = $request->password;
             $bayar = Pembayaran::where('wa_user',$client->wa_siswa)->get();
             $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -61,7 +61,7 @@ class ClientController extends Controller
             $siswa = User::where('wa_siswa',null)->get();
             $ujian = Ujian::where('wa_user',$request->no_wa)->get();;
             $nominal = Nominal::where('wa_user',$request->no_wa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->get();
+            $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -80,7 +80,7 @@ class ClientController extends Controller
             $password = $request->password;
             $ujian = Ujian::where('wa_user',$request->wa_user)->get();
             $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+            $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -102,7 +102,7 @@ class ClientController extends Controller
         }
         if($akun->roles_id=='1'){
             $nominal = Nominal::where('wa_user',$akun->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->get();
+            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -115,7 +115,7 @@ class ClientController extends Controller
                 }
         }else{
             $nominal = Nominal::where('wa_user',$akun->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->get();
+            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){

@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin</title>
+    <title>Riwayat Ujian</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets') }}/fontawesome/css/all.min.css">
@@ -45,9 +45,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
                 <p><b>Rp.
                     @if($nominal!=null)
-                    {{ $nominal->nominal }}
+                    {{ number_format($nominal->nominal) }}
                     @else
-                    {{ $nominal }}
+                    {{ number_format($nominal) }}
                     @endif
                 </b></p>
             </div>
@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
                 <div class="wallet">
-                    <a class="tombol" href="#"><i class="fa-solid fa-wallet fa-2x"></i></a>
+                    <a class="tombol" href="pembayaran/{{ $client->wa_user }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -70,13 +70,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <h6>Pembayaran</h6>
                 <p><b>Rp.
                     @if($nominal!=null)
-                    {{ $total }}
+                    {{ number_format($total) }}
                     @endif
                 </b></p>
             </div>
             <div class="kekurangan">
                 <h6>Kekurangan</h6>
-                <p><b>Rp. {{ $kekurangan }}</b></p>
+                <p><b>Rp. {{ number_format($kekurangan) }}</b></p>
             </div>
         </div>
         </div>

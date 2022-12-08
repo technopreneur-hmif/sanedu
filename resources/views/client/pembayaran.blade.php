@@ -22,7 +22,7 @@
             <div class="wrap-verif">
                 <div class="kurang">
                     <h6>Kekurangan Pembayaran</h6>
-                    <p><b>Rp. {{ $kekurangan }}</b></p>
+                    <p><b>Rp. {{ number_format($kekurangan) }}</b></p>
                 </div>
                 <div class="rek">
                     <h6>Nomor Rekening Pembayaran</h6>

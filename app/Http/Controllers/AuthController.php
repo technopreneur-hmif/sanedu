@@ -129,7 +129,7 @@ class AuthController extends Controller
                 $siswa = User::where('wa_siswa',null)->get();
                 $presensi = Presensi::where('wa_user',$request->no_wa)->get();
                 $nominal = Nominal::where('wa_user',$request->no_wa)->first();
-                $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->get();
+                $pembayaran = Pembayaran::where('wa_user',$request->no_wa)->where('status','1')->get();
                 $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -147,7 +147,7 @@ class AuthController extends Controller
                 $password = $request->password;
                 $presensi = Presensi::where('wa_user',$request->wa_user)->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
-                $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+                $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
