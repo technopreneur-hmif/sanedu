@@ -26,8 +26,13 @@
                 </div>
                 <div class="rek">
                     <h6>Nomor Rekening Pembayaran</h6>
-                    <p><b>BNI : 21213-39393-933 </b></p>
-                    <p><b>MANDIRI : 21929-03033-099</b></p>
+                    <p><b>BRI : 0098-01-002211-56-3 </b></p>
+                    <p><b>An. PT. Wahana Gerak Indonesia </b></p><br>
+
+                    <p><b>Mandiri : 114002-54805-45</b></p>
+                    <p><b>An . Wahana Gerak Indonesia</b></p>
+
+
                 </div>
                 <a class="btn btn-primary" href="{{ '../upload_pembayaran/'.$akun->wa_user }}" role="button">Verifikasi Pembayaran</a>
             </div>

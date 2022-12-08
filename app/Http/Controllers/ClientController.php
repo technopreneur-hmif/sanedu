@@ -102,23 +102,30 @@ class ClientController extends Controller
         }
         if($akun->roles_id=='1'){
             $nominal = Nominal::where('wa_user',$akun->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->first();
+            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->get();
+            $total = 0;
                 if($nominal !=null){
-                    $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                    foreach($pembayaran as $pem){
+                        $total = $total + $pem->nominal;
+                    }
+                    $kekurangan = $nominal->nominal - $total;
                 }else{
                     $nominal = 0;
                     $kekurangan = 0;
                 }
         }else{
-            $nominal = Nominal::where('wa_user',$akun->wa_user)->first();
-            $pembayaran = Pembayaran::where('wa_user',$akun->wa_user)->first();
+            $nominal = Nominal::where('wa_user',$akun->wa_siswa)->first();
+            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->get();
+            $total = 0;
                 if($nominal !=null){
-                    $kekurangan = $nominal->nominal - $pembayaran->nominal;
+                    foreach($pembayaran as $pem){
+                        $total = $total + $pem->nominal;
+                    }
+                    $kekurangan = $nominal->nominal - $total;
                 }else{
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-
         }
         return view('client.pembayaran',compact('akun','nominal','pembayaran','nominal','kekurangan'));
     }
