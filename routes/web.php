@@ -58,6 +58,7 @@ Route::get('/kelas/edit/{id}',[AdminController::class, 'kelas_edit'])->name('kel
 Route::post('/kelas/update',[AdminController::class, 'verif_kelas'])->name('verif_kelas');
 Route::get('/kelas/delete/{id}',[AdminController::class, 'kelas_delete'])->name('kelas_delete');
 Route::get('/kelas/tambahkelas',[AdminController::class, 'tambahkelas'])->name('tambahkelas');
+Route::post('/kelas/penambahan_kelas',[AdminController::class, 'penambahan_kelas'])->name('penambahan_kelas');
 
 
 

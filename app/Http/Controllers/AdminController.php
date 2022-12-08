@@ -163,4 +163,13 @@ class AdminController extends Controller
     public function tambahkelas(){
         return view('cms.user.tambah_kelas');
     }
+
+    public function penambahan_kelas(Request $request){
+        Kelas::create([
+            'nama_kelas' => $request->nama,
+            'jumlah' =>$request->jumlah
+        ]);
+        $data = Kelas::all();
+        return view('cms.user.kelas',compact('data'));
+    }
 }

@@ -10,17 +10,23 @@
     <link href="{{ asset('assets') }}/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
 
-    <title>Daftar Orang Tua</title>
+    <title>Tambah Kelas</title>
 </head>
 
 <body>
     <div class="container">
-        <form action="{{ route('tambahkelas') }}" method="POST">
+        <form action="{{ route('penambahan_kelas') }}" method="POST">
             @csrf
             <div class="row mb-3">
                 <label for="inputtext3" class="col-sm-3 col-form-label">Nama</label>
                 <div class="col-sm-9">
                     <input type="text" name="nama" class="form-control" id="inputtext3">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputtext3" class="col-sm-3 col-form-label">Jumlah</label>
+                <div class="col-sm-9">
+                    <input type="text" name="jumlah" class="form-control" id="inputtext3">
                 </div>
             </div>
             <div class="tombol-kelas">
