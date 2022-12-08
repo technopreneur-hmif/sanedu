@@ -95,6 +95,14 @@ label {
     max-width: 300px !important;
 }
 
+.hai h2 {
+    font-size: 25px;
+}
+
+.hai b {
+    font-size: 25px;
+}
+
 .ikon {
     padding: 20px;
     color: white;
@@ -124,6 +132,7 @@ label {
     flex-wrap: wrap;
     margin-bottom: 50px;
     /* width: 100%; */
+    justify-content: center;
 }
 
 .pembayaran {
