@@ -21,6 +21,11 @@
                     <div id="reader" width="600px"></div>
                 </div>
             </div>
+            <form action="{{ route('clientside') }}" method="POST" align="center">
+                @csrf
+                <input type="text" name="no_wa" value="{{ $akun->nama }}">
+                    <button type="submit" class="btn btn-primary">Kembali</button>
+            </form>
     </div>
 
         <!-- Optional JavaScript; choose one of the two! -->
@@ -60,8 +65,9 @@
                         Swal.fire(
                         'Good job!',
                         'Absensi Kamu Berhasil',
-                        'success'
+                        'success',
                         )
+
                     }else{
                         Swal.fire(
                         'Cancelled',

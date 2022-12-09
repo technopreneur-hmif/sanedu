@@ -6,6 +6,7 @@ use App\Models\Nominal;
 use App\Models\Pembayaran;
 use App\Models\Presensi;
 use App\Models\qr_code;
+use App\Models\Status;
 use App\Models\Ujian;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use Illuminate\Support\Carbon;
 class ClientController extends Controller
 {
     public function riwayat_pembayaran(Request $request){
+        $status = Status::all();
         if($request->roles=='2'){
             $client = User::where('wa_user',$request->no_wa)->where('roles_id','2')->first();
             $password = $request->password;
@@ -31,7 +33,7 @@ class ClientController extends Controller
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-            return view('client.riwayat-pembayaran',compact('client','siswa','total','bayar','pembayaran','password','nominal','kekurangan'));
+            return view('client.riwayat-pembayaran',compact('client','siswa','total','bayar','pembayaran','password','nominal','kekurangan','status'));
         }else{
             $client = User::where('wa_user',$request->no_wa)->where('roles_id','1')->first();
             $siswa = User::where('wa_user',$client->wa_siswa)->first();
@@ -50,7 +52,7 @@ class ClientController extends Controller
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','total','pembayaran','password','nominal','kekurangan'));
+            return view('client.riwayat-pembayaran',compact('client','siswa','bayar','total','pembayaran','password','nominal','kekurangan','status'));
         }
     }
 
@@ -157,8 +159,9 @@ class ClientController extends Controller
         return redirect('pembayaran/'.$request->no_wa);
     }
 
-    public function scan(){
-        return view('client.scan');
+    public function scan($id){
+        $akun = User::where('wa_siswa',$id)->first();
+        return view('client.scan',compact('akun'));
     }
 
     public function validasi_qrcode(Request $request){

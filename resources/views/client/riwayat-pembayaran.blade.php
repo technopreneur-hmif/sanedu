@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="ikon">
                 @if($client->roles_id==2)
                 <div class="qr">
-                    <a class="tombol" href="{{ route('scan') }}"><i class="fa-solid fa-qrcode fa-2x"></i></a>
+                    <a class="tombol" href="scan/{{ $client->wa_user }}"><i class="fa-solid fa-qrcode fa-2x"></i></a>
                 </div>
                 @endif
                 <div class="wa">
@@ -152,7 +152,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 Pembayaran Ke-{{ $p->pembayaran_ke }}
                             </td>
                             <td>
-                                {{ $p->status }}
+                                @foreach($status as $s)
+                                    @if($s->id_status==$p->status)
+                                        {{ $s->status }}
+                                    @endif
+                                @endforeach
                             </td>
                             <td>
                                 {{ $p->keterangan }}
