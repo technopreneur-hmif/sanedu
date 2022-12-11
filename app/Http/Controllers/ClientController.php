@@ -10,6 +10,7 @@ use App\Models\Status;
 use App\Models\Ujian;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
 class ClientController extends Controller
@@ -160,8 +161,12 @@ class ClientController extends Controller
     }
 
     public function scan($id){
-        $akun = User::where('wa_siswa',$id)->first();
-        return view('client.scan',compact('akun'));
+        if(Auth::check()){
+            $akun = User::where('wa_siswa',$id)->first();
+            return view('client.scan',compact('akun'));
+        }else{
+            return redirect('');
+        }
     }
 
     public function validasi_qrcode(Request $request){

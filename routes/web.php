@@ -59,7 +59,7 @@ Route::post('/kelas/update',[AdminController::class, 'verif_kelas'])->name('veri
 Route::get('/kelas/delete/{id}',[AdminController::class, 'kelas_delete'])->name('kelas_delete');
 Route::get('/kelas/tambahkelas',[AdminController::class, 'tambahkelas'])->name('tambahkelas');
 Route::post('/kelas/penambahan_kelas',[AdminController::class, 'penambahan_kelas'])->name('penambahan_kelas');
-
+Route::get('/logout',[AdminController::class, 'logout'])->name('logoutadmin');
 
 
 Route::post('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
