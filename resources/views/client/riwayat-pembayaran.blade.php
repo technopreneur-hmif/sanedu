@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 @endif
                 <div class="wa">
-                    <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
+                    <a class="tombol" href="https://wa.me/62887437482372"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
                 <div class="wallet">
                     <a class="tombol" href="pembayaran/{{ $client->wa_user }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
