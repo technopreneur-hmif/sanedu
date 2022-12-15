@@ -162,7 +162,7 @@ class ClientController extends Controller
 
     public function scan($id){
         if(Auth::check()){
-            $akun = User::where('wa_siswa',$id)->first();
+            $akun = User::where('wa_user',$id)->first();
             return view('client.scan',compact('akun'));
         }else{
             return redirect('');
