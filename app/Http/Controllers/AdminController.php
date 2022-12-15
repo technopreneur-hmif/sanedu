@@ -27,7 +27,7 @@ class AdminController extends Controller
         $verif = User::where('id',$id)->first();
         $kelas = Kelas::all();
 
-        if($verif->roles_id){
+        if($verif->roles_id=='1'){
             $nominal = Nominal::where('wa_user',$verif->wa_siswa)->first();
             $verif->update([
                 'status' => '1',
@@ -182,7 +182,7 @@ class AdminController extends Controller
     public function kelas_delete($id){
         try{
 
-            $data = User::where('id', $id)->first();
+            $data = Kelas::where('id', $id)->first();
             $data->delete();
         } catch(Exception $ex){
             return redirect('kelas')->with('error', 'Gagal Hapus Data!');

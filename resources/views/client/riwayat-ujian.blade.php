@@ -63,6 +63,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="wallet">
                     <a class="tombol" href="pembayaran/{{ $client->wa_user }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
                 </div>
+                <div class="wa">
+                    <a class="tombol" href="{{ route('logoutadmin') }}"><i class="fa fa-sign-out fa-2x"></i></a>
+                </div>
             </div>
         </div>
         <div class="keuangan">
