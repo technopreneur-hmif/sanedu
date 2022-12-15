@@ -21,9 +21,7 @@
                     <div id="reader" width="600px"></div>
                 </div>
             </div>
-            <form action="{{ route('clientside') }}" method="POST" align="center">
-                @csrf
-                <input type="text" name="no_wa" value="{{ $akun->nama }}">
+            <form action="{{ route('absensi') }}" method="GET" align="center">
                     <button type="submit" class="btn btn-primary">Kembali</button>
             </form>
     </div>

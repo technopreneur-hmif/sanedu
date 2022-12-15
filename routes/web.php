@@ -62,8 +62,10 @@ Route::post('/kelas/penambahan_kelas',[AdminController::class, 'penambahan_kelas
 Route::get('/logout',[AdminController::class, 'logout'])->name('logoutadmin');
 
 
-Route::post('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
-Route::post('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
+
+Route::get('/absensi',[ClientController::class, 'absensi'])->name('absensi');
+Route::get('/riwayat_pembayaran',[ClientController::class, 'riwayat_pembayaran'])->name('riwayat_pembayaran');
+Route::get('/riwayat_ujian',[ClientController::class, 'riwayat_ujian'])->name('riwayat_ujian');
 Route::get('/pembayaran/{id}',[ClientController::class, 'pembayaran'])->name('pembayaran');
 Route::get('/upload_pembayaran/{id}',[ClientController::class, 'upload_pembayaran'])->name('upload_pembayaran');
 Route::post('/bukti',[ClientController::class, 'bukti'])->name('bukti');

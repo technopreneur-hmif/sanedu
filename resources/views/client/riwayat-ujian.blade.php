@@ -86,27 +86,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="container">
 
             <div class="button">
-                <form method="post" action="{{ route('riwayat_ujian') }}">
-                    @csrf
-                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
-                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
-                    <input type="hidden" name="password" value="{{ $password }}">
+                <form method="get" action="{{ route('riwayat_ujian') }}">
                     <button type="submit" class="btn btn-primary verif" role="button">Riwayat Ujian</button>
                 </form>
-                <form method="post" action="{{ route('riwayat_pembayaran') }}">
-                    @csrf
-                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
-                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
-                    <input type="hidden" name="password" value="{{ $password }}">
+                <form method="get" action="{{ route('riwayat_pembayaran') }}">
                     <button type="submit" class="btn btn-primary" role="button">Riwayat Pembayaran</button>
                 </form>
-                <form method="post" action="{{ route('clientside') }}">
-                    @csrf
-                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
-                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
-                    <input type="hidden" name="password" value="{{ $password }}">
+                <form action="{{ route('absensi') }}" method="get">
                     <button type="submit" class="btn btn-primary" role="button">Absensi Siswa</button>
                 </form>
+
             </div>
             <form action="#">
                 <select name="classroom" id="lang">
