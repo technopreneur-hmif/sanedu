@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function index() {
+        return view('admin.index');
+    }
     public function verifikasi(){
         if(Auth::check()){
             $data = User::where('status','2')->get();

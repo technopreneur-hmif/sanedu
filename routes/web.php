@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminFinanceController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthenController;
@@ -78,9 +79,20 @@ Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(functi
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::group(['prefix' => 'finance'], function () {
-        Route::get('/',[AdminFinanceController::class, 'index'])->name('admin.finance.index');
+    
+    Route::get('/',[AdminController::class, 'index'])->name('admin');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/',[AdminUserController::class, 'index'])->name('admin.user');
+        Route::get('/verifikasi',[AdminUserController::class, 'index'])->name('admin.user.verification');
+        Route::get('/verifikasi/edit/{id}',[AdminUserController::class, 'verifikasiEdit'])->name('admin.user.verification.edit');
+        Route::post('/verifikasi/update',[AdminUserController::class, 'verifikasiUpdate'])->name('admin.user.verification.update');
     });
+
+    Route::group(['prefix' => 'finance'], function () {
+        Route::get('/',[AdminFinanceController::class, 'index'])->name('admin.finance');
+    });
+
 });
 
 
