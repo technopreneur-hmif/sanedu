@@ -77,7 +77,7 @@ Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(functi
 
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::group(['prefix' => 'finance'], function () {
         Route::get('/',[AdminFinanceController::class, 'index'])->name('admin.finance.index');
     });

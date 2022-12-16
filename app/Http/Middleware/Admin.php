@@ -20,7 +20,7 @@ class Admin
         if (Auth::check() && auth()->user()->roles_id == 99) {
             return $next($request);
         } else {
-            return redirect('login');
+            return redirect('/');
         }
     }
 }
