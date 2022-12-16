@@ -63,18 +63,12 @@ User
                         {{ $user->child->nama }}
                     </td>
                     <td>
-
-                    {{-- <div class="col-md-13">
-                        <a href="verifikasi/verifikasi_edit/{{ $result->id }}"><button type="button" class="btn btn-success">Acc</button></a>
-                        <a href="verifikasi/delete/{{ $result->id }}"><button type="button" class="btn btn-danger">Tolak</button></a>
-                    </div> --}}
-
                         <a href="{{ route('admin.user.verification.edit', $user->id) }}" class="btn btn-xs btn-success" title="Delete">
                             ACC
                         </a>
-                        {{-- <a href="{{ route('admin.member.edit', $data->id) }}" class="btn btn-xs btn-default" title="Edit">
-                            <i class="mdi mdi-edit"></i>
-                        </a> --}}
+                        <a href="{{ route('verifikasi_delete', $user->id) }}" class="btn btn-xs btn-danger delete" title="Edit">
+                            Delete
+                        </a>
                     </td>
                 </tr>
                 @endforeach

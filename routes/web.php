@@ -87,6 +87,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/verifikasi',[AdminUserController::class, 'index'])->name('admin.user.verification');
         Route::get('/verifikasi/edit/{id}',[AdminUserController::class, 'verifikasiEdit'])->name('admin.user.verification.edit');
         Route::post('/verifikasi/update',[AdminUserController::class, 'verifikasiUpdate'])->name('admin.user.verification.update');
+        Route::get('/student',[AdminUserController::class, 'student'])->name('admin.user.student');
+        Route::get('/parent',[AdminUserController::class, 'parent'])->name('admin.user.parent');
+        Route::get('/class-list',[AdminUserController::class, 'classList'])->name('admin.user.class');
     });
 
     Route::group(['prefix' => 'finance'], function () {

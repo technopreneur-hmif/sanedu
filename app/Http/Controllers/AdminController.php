@@ -38,7 +38,8 @@ class AdminController extends Controller
             ]);
             $data = User::where('status','2')->get();
             $siswa = User::where('wa_siswa',null)->get();
-            return view('cms.user.verifikasi',compact('data','siswa'));
+            // return view('cms.user.verifikasi',compact('data','siswa'));
+            return redirect()->route('admin.user.verification');
         }
         else{
             return view('cms.user.acc-verif', compact('verif','kelas'));
@@ -67,7 +68,8 @@ class AdminController extends Controller
                 'kelas' => $request->kelas
             ]);
         }
-        return redirect('verifikasi')->with('sukses', 'Berhasil Acc Data!');
+        // return redirect('verifikasi')->with('sukses', 'Berhasil Acc Data!');
+        return redirect()->route('admin.user.verification')->with('success', 'Berhasil Acc Data!');
 
     }
 
@@ -77,9 +79,11 @@ class AdminController extends Controller
             $data = User::where('id', $id)->first();
             $data->delete();
         } catch(Exception $ex){
-            return redirect('verifikasi')->with('error', 'Gagal Hapus Data!');
+            // return redirect('verifikasi')->with('error', 'Gagal Hapus Data!');
+            return redirect()->route('admin.user.verification')->with('error', 'Gagal Hapus Data!');
         }
-        return redirect('verifikasi')->with('sukses', 'Berhasil Hapus Data!');
+        // return redirect('verifikasi')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.user.verification')->with('success', 'Berhasil Hapus Data!');
     }
 
     public function siswa(){
@@ -110,7 +114,8 @@ class AdminController extends Controller
                 'kelas' =>$request->kelas
         ]);
         }
-        return redirect('siswa');
+        // return redirect('siswa');
+        return redirect()->route('admin.user.student');
     }
 
     public function siswa_delete($id){
@@ -119,9 +124,11 @@ class AdminController extends Controller
             $data = User::where('id', $id)->first();
             $data->delete();
         } catch(Exception $ex){
-            return redirect('siswa')->with('error', 'Gagal Hapus Data!');
+            // return redirect('siswa')->with('error', 'Gagal Hapus Data!');
+            return redirect()->route('admin.user.student')->with('error', 'Gagal Hapus Data!');
         }
-        return redirect('siswa')->with('sukses', 'Berhasil Hapus Data!');
+        // return redirect('siswa')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.user.student')->with('success', 'Berhasil Hapus Data!');
     }
 
     public function ortu(){
@@ -146,7 +153,8 @@ class AdminController extends Controller
                 'password' =>Hash::make($request->password),
         ]);
         }
-        return redirect('ortu');
+        // return redirect('ortu');
+        return redirect()->route('admin.user.parent');
     }
 
     public function ortu_delete($id){
@@ -155,9 +163,11 @@ class AdminController extends Controller
             $data = User::where('id', $id)->first();
             $data->delete();
         } catch(Exception $ex){
-            return redirect('ortu')->with('error', 'Gagal Hapus Data!');
+            // return redirect('ortu')->with('error', 'Gagal Hapus Data!');
+            return redirect()->route('admin.user.parent')->with('error', 'Gagal Hapus Data!');
         }
-        return redirect('ortu')->with('sukses', 'Berhasil Hapus Data!');
+        // return redirect('ortu')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.user.parent')->with('success', 'Berhasil Hapus Data!');
     }
 
     public function kelas(){
@@ -179,7 +189,7 @@ class AdminController extends Controller
         $update->update([
                 'nama_kelas' =>$request->nama_kelas,
         ]);
-        return redirect('kelas');
+        return redirect()->route('admin.user.class');
     }
 
     public function kelas_delete($id){
@@ -188,9 +198,9 @@ class AdminController extends Controller
             $data = Kelas::where('id', $id)->first();
             $data->delete();
         } catch(Exception $ex){
-            return redirect('kelas')->with('error', 'Gagal Hapus Data!');
+            return redirect()->route('admin.user.class')->with('error', 'Gagal Hapus Data!');
         }
-        return redirect('kelas')->with('sukses', 'Berhasil Hapus Data!');
+        return redirect()->route('admin.user.class')->with('success', 'Berhasil Hapus Data!');
     }
 
     public function tambahkelas(){

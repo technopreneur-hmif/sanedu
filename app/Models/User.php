@@ -52,4 +52,8 @@ class User extends Authenticatable
   	public function child() {
         return $this->belongsTo(User::class, 'wa_siswa', 'wa_user')->withDefault();
     }
+
+  	public function class() {
+        return $this->belongsTo(Kelas::class, 'kelas')->withDefault();
+    }
 }

@@ -13,7 +13,7 @@ class AdminUserController extends Controller
     public function index(){
         $unverifiedUsers = User::where('status','2')->get();
         $siswa = User::where('wa_siswa',null)->get();
-        return view('admin.user.user_verification')->with([
+        return view('admin.user.verification')->with([
             'unverifiedUsers' => $unverifiedUsers,
             'siswa' => $siswa,
         ]);
@@ -62,6 +62,27 @@ class AdminUserController extends Controller
         }
         return redirect('admin.user.verification')->with('sukses', 'Berhasil Acc Data!');
 
+    }
+    
+    public function student(){
+        $data = User::where('roles_id','2')->where('status','1')->get();
+        return view('admin.user.student')->with([
+            'data' => $data,
+        ]);
+    }
+
+    public function parent(){
+        $data = User::where('roles_id','1')->where('status','1')->get();
+        return view('admin.user.parent')->with([
+            'data' => $data,
+        ]);
+    }
+
+    public function classList(){
+        $data = Kelas::all();
+        return view('admin.user.class')->with([
+            'data' => $data,
+        ]);
     }
 
 }
