@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminFinanceController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthenController;
@@ -74,5 +75,10 @@ Route::middleware([Admin::class])->name('admin.')->prefix('admin')->group(functi
 
 });
 
+Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'finance'], function () {
+        Route::get('/',[AdminFinanceController::class, 'index'])->name('admin.finance.index');
+    });
+});
 
 
