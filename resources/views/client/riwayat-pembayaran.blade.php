@@ -58,10 +58,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 @endif
                 <div class="wa">
-                    <a class="tombol" href="https://wa.me/6282175992745"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
+                    <a class="tombol" href="https://wa.me/62887437482372"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
                 </div>
                 <div class="wallet">
                     <a class="tombol" href="pembayaran/{{ $client->wa_user }}"><i class="fa-solid fa-wallet fa-2x"></i></a>
+                </div>
+                <div class="wa">
+                    <a class="tombol" href="{{ route('logoutadmin') }}"><i class="fa fa-sign-out fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -83,25 +86,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="container">
 
             <div class="button">
-                <form method="post" action="{{ route('riwayat_ujian') }}">
-                    @csrf
-                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
-                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
-                    <input type="hidden" name="password" value="{{ $password }}">
+                <form method="get" action="{{ route('riwayat_ujian') }}">
                     <button type="submit" class="btn btn-primary" role="button">Riwayat Ujian</button>
                 </form>
-                <form method="post" action="{{ route('riwayat_pembayaran') }}">
-                    @csrf
-                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
-                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
-                    <input type="hidden" name="password" value="{{ $password }}">
+                <form method="get" action="{{ route('riwayat_pembayaran') }}">
                     <button type="submit" class="btn btn-primary verif" role="button">Riwayat Pembayaran</button>
                 </form>
-                <form method="post" action="{{ route('clientside') }}">
-                    @csrf
-                    <input type="hidden" name="no_wa" value="{{ $client->wa_user }}">
-                    <input type="hidden" name="roles" value="{{ $client->roles_id }}">
-                    <input type="hidden" name="password" value="{{ $password }}">
+                <form action="{{ route('absensi') }}" method="get">
                     <button type="submit" class="btn btn-primary" role="button">Absensi Siswa</button>
                 </form>
             </div>

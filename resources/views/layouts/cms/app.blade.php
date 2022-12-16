@@ -32,7 +32,10 @@
 	          <li>
               <a href="#">Ujian</a>
 	          </li>
-
+              <br>
+              <li>
+                <a class="btn btn-danger" href="{{ route('logoutadmin') }}">Logout</a>
+              </li>
 	        </ul>
 	      </div><br><br><br><br>
           <br><br><br><br><br>

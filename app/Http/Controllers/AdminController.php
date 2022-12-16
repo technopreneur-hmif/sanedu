@@ -13,15 +13,33 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function verifikasi(){
-        $data = User::where('status','2')->get();
-        $siswa = User::where('wa_siswa',null)->get();
-        return view('cms.user.verifikasi',compact('data','siswa'));
+        if(Auth::check()){
+            $data = User::where('status','2')->get();
+            $siswa = User::where('wa_siswa',null)->get();
+            return view('cms.user.verifikasi',compact('data','siswa'));
+        }
+        else{
+            return redirect('');
+        }
     }
 
     public function verifikasi_edit($id){
         $verif = User::where('id',$id)->first();
         $kelas = Kelas::all();
-        return view('cms.user.acc-verif', compact('verif','kelas'));
+
+        if($verif->roles_id=='1'){
+            $nominal = Nominal::where('wa_user',$verif->wa_siswa)->first();
+            $verif->update([
+                'status' => '1',
+                'nominal' => $nominal->id
+            ]);
+            $data = User::where('status','2')->get();
+            $siswa = User::where('wa_siswa',null)->get();
+            return view('cms.user.verifikasi',compact('data','siswa'));
+        }
+        else{
+            return view('cms.user.acc-verif', compact('verif','kelas'));
+        }
     }
 
     public function verifikasi_update(Request $request){
@@ -62,9 +80,13 @@ class AdminController extends Controller
     }
 
     public function siswa(){
-        $data = User::where('roles_id','2')->where('status','1')->get();
-        $kelas = Kelas::all();
-        return view('cms.user.siswa',compact('data','kelas'));
+        if(Auth::check()){
+            $data = User::where('roles_id','2')->where('status','1')->get();
+            $kelas = Kelas::all();
+            return view('cms.user.siswa',compact('data','kelas'));
+        }else{
+            return redirect('');
+        }
     }
 
     public function siswa_edit($id){
@@ -100,9 +122,13 @@ class AdminController extends Controller
     }
 
     public function ortu(){
-        $data = User::where('roles_id','1')->where('status','1')->get();
-        $siswa = User::where('wa_siswa',null)->get();
-        return view('cms.user.ortu',compact('data','siswa'));
+        if(Auth::check()){
+            $data = User::where('roles_id','1')->where('status','1')->get();
+            $siswa = User::where('wa_siswa',null)->get();
+            return view('cms.user.ortu',compact('data','siswa'));
+        }else{
+            return redirect('');
+        }
     }
 
     public function ortu_edit($id){
@@ -132,8 +158,12 @@ class AdminController extends Controller
     }
 
     public function kelas(){
-        $data = Kelas::all();
-        return view('cms.user.kelas',compact('data'));
+        if(Auth::check()){
+            $data = Kelas::all();
+            return view('cms.user.kelas',compact('data'));
+        }else{
+            return redirect('');
+        }
     }
 
     public function kelas_edit($id){
@@ -152,7 +182,7 @@ class AdminController extends Controller
     public function kelas_delete($id){
         try{
 
-            $data = User::where('id', $id)->first();
+            $data = Kelas::where('id', $id)->first();
             $data->delete();
         } catch(Exception $ex){
             return redirect('kelas')->with('error', 'Gagal Hapus Data!');
@@ -171,5 +201,10 @@ class AdminController extends Controller
         ]);
         $data = Kelas::all();
         return view('cms.user.kelas',compact('data'));
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('');
     }
 }
