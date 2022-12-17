@@ -21,6 +21,7 @@
                     <div id="reader" width="600px"></div>
                 </div>
             </div>
+            <input type="text" id="wa_user" value="{{ Auth::user()->wa_user }}" hidden>
             <form action="{{ route('absensi') }}" method="GET" align="center">
                     <button type="submit" class="btn btn-primary">Kembali</button>
             </form>
@@ -46,6 +47,7 @@
         // alert(decodedText);
         $('#result').val(decodedText);
         let id = decodedText;
+        let wa = document.getElementById("wa_user").value;
         html5QrcodeScanner.clear().then(_ => {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
@@ -55,7 +57,8 @@
                 data: {
                     _methode : "POST",
                     _token: CSRF_TOKEN,
-                    qr_code : id
+                    qr_code : id,
+                    wa_user : wa
                 },
                 success: function (response) {
                     console.log(response);

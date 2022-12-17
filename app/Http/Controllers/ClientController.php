@@ -219,6 +219,14 @@ class ClientController extends Controller
         $qr = $request->qr_code;
         $data = qr_code::where('tanggal',Carbon::now()->toDateString())->first();
         if($qr == $data->token){
+            Presensi::create([
+                'tanggal_presensi' => Carbon::now()->toDateString(),
+                'hari' => Carbon::now()->format('l'),
+                'waktu_masuk' => $data->created_at,
+                'waktu_submit' => Carbon::now()->toTimeString(),
+                'keterangan' => 1,
+                'wa_user' => $request->wa_user
+            ]);
             return response()->json([
                 'status' => 200,
             ]);
