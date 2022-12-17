@@ -9,6 +9,8 @@ class Pembayaran extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_pembayaran';
+
     protected $fillable = [
         'id_pembayaran',
         'tanggal_pembayaran',
@@ -17,6 +19,11 @@ class Pembayaran extends Model
         'status',
         'bukti_pembayaran',
         'keterangan',
-        'wa_user'
+        'wa_user',
+        'approved_at',
     ];
+
+    public function student() {
+        return $this->belongsTo(User::class, 'wa_user', 'wa_user')->withDefault();
+  }
 }

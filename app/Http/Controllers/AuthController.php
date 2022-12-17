@@ -53,7 +53,8 @@ class AuthController extends Controller
             'password' => $request->input('password')
         ];
         if(Auth::Attempt($data)){
-            return redirect('verifikasi');
+            // return redirect('verifikasi');
+            return redirect()->route('admin');
         }else{
             return redirect('loginadmin');
         }

@@ -29,8 +29,16 @@
                         <li class="">
                             <a href="#"><i class="icon mdi mdi-check-circle"></i><span>Absensi</span></a>
                         </li>
-                        <li class="">
+                        <li class="parent {{ active(['admin.finance', 'admin.finance.*'], 'active open') }}">
                             <a href="{{route('admin.finance')}}"><i class="icon mdi mdi-tab"></i><span>Keuangan</span></a>
+                            <ul class="sub-menu">
+                                <li class="{{ active(['admin.finance.payment', 'admin.finance.payment.*']) }}">
+                                    <a href="{{route('admin.finance.payment')}}">Pembayaran</a>
+                                </li>
+                                <li class="{{ active(['admin.finance', 'admin.finance.history', 'admin.finance.history.*']) }}">
+                                    <a href="{{route('admin.finance.history')}}">Rekapan</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="">
                             <a href="#"><i class="icon mdi mdi-ticket-star"></i><span>Ujian</span></a>

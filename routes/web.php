@@ -93,7 +93,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'finance'], function () {
-        Route::get('/',[AdminFinanceController::class, 'index'])->name('admin.finance');
+        Route::get('/',[AdminFinanceController::class, 'history'])->name('admin.finance');
+        Route::get('/payment',[AdminFinanceController::class, 'payment'])->name('admin.finance.payment');
+        Route::get('/payment/delete/{id}',[AdminFinanceController::class, 'paymentDelete'])->name('admin.finance.payment.delete');
+        Route::get('/payment/acc/{id}',[AdminFinanceController::class, 'paymentAcc'])->name('admin.finance.payment.acc');
+        Route::get('/history',[AdminFinanceController::class, 'history'])->name('admin.finance.history');
     });
 
 });

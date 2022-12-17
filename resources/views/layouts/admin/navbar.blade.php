@@ -13,8 +13,7 @@
                         <div class="user-position online">Nama User</div>
                     </div>
                 </li>
-                {{-- <li><a href="{{ route('auth.logout') }}"><span class="icon mdi mdi-power"></span> Logout</a></li> --}}
-                <li><a href="#"><span class="icon mdi mdi-power"></span> Logout</a></li>
+                <li><a href="{{ route('logoutadmin') }}"><span class="icon mdi mdi-power"></span> Logout</a></li>
             </ul>
         </li>
     </ul>
