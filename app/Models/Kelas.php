@@ -18,4 +18,8 @@ class Kelas extends Model
     public function meeting() {
         return $this->hasOne(Meeting::class, 'class_id')->withDefault();
     }
+
+    public function qrCodes() {
+        return $this->hasMany(qr_code::class, 'kelas');
+    }
 }

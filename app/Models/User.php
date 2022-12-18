@@ -56,4 +56,8 @@ class User extends Authenticatable
   	public function class() {
         return $this->belongsTo(Kelas::class, 'kelas')->withDefault();
     }
+
+  	public function presentions() {
+        return $this->hasMany(Presensi::class, 'wa_user', 'wa_user');
+    }
 }

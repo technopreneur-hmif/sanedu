@@ -7,6 +7,7 @@ use App\Models\Kelas;
 use App\Models\Meeting;
 use App\Models\Pembayaran;
 use App\Models\qr_code;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -79,6 +80,13 @@ class AdminAbsentController extends Controller
         $data->delete();
         return redirect()->route('admin.absent.meeting')->with([
             'success' => 'Berhasil menghapus data pertemuan'
+        ]);
+    }
+
+    public function absentHistory() {
+        $students = User::where('roles_id', 2)->get();
+        return view('admin.absent.history')->with([
+            'students' => $students
         ]);
     }
 
