@@ -69,6 +69,12 @@
                     Password tidak sama harap ulangi!
                 </div>
             </div>
+            @elseif(session('akun'))
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <div class="alert-text">
+                    Akun Siswa belum terdaftar
+                </div>
+            </div>
             @endif
             <button type="submit" class="btn btn-primary">Daftar</button>
         </form>

@@ -155,7 +155,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 {{ $p->waktu_submit }}
                             </td>
                             <td>
-                                {{ $p->keterangan }}
+                                @foreach($keterangan as $k)
+                                    @if($p->keterangan == $k->id_keterangan)
+                                    {{ $k->keterangan }}
+                                    @endif
+                                @endforeach
                             </td>
                         </tr>
                         @endforeach

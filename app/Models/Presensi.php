@@ -15,6 +15,7 @@ class Presensi extends Model
         'hari',
         'waktu_masuk',
         'waktu_submit',
-        'keterangan'
+        'keterangan',
+        'wa_user'
     ];
 }

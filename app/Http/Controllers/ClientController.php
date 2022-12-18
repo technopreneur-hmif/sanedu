@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Keterangan;
 use App\Models\Nominal;
 use App\Models\Pembayaran;
 use App\Models\Presensi;
@@ -17,6 +18,7 @@ class ClientController extends Controller
 {
     public function absensi(){
         if(Auth::check()){
+            $keterangan = Keterangan::all();
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
@@ -33,7 +35,7 @@ class ClientController extends Controller
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-                return view('client.absensi',compact('client','siswa','total','presensi','nominal','pembayaran','kekurangan'));
+                return view('client.absensi',compact('client','siswa','total','presensi','nominal','pembayaran','kekurangan','keterangan'));
             }else{
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
@@ -50,7 +52,7 @@ class ClientController extends Controller
                     $nominal = 0;
                     $kekurangan = 0;
                 }
-                return view('client.absensi',compact('client','siswa','total','presensi','nominal','pembayaran','kekurangan'));
+                return view('client.absensi',compact('client','siswa','total','presensi','nominal','pembayaran','kekurangan','keterangan'));
             }
         }else{
             return redirect('');
@@ -124,7 +126,7 @@ class ClientController extends Controller
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
                 $ortu = User::where('wa_siswa',$client->wa_user)->first();
-                $ujian = Ujian::where('wa_user',Auth::user()->wa_user)->get();
+                $ujian = Ujian::where('wa_user',$client->wa_siswa)->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
@@ -218,7 +220,28 @@ class ClientController extends Controller
     public function validasi_qrcode(Request $request){
         $qr = $request->qr_code;
         $data = qr_code::where('tanggal',Carbon::now()->toDateString())->first();
-        if($qr == $data->token){
+        if($data == false){
+            Presensi::create([
+                'tanggal_presensi' => Carbon::now()->toDateString(),
+                'hari' => Carbon::now()->format('l'),
+                'waktu_masuk' => Carbon::now()->toTimeString(),
+                'waktu_submit' => Carbon::now()->toTimeString(),
+                'keterangan' => 2,
+                'wa_user' => $request->wa_user
+            ]);
+            return response()->json([
+                'status' => 400,
+            ]);
+        }
+        elseif($qr == $data->token){
+            Presensi::create([
+                'tanggal_presensi' => Carbon::now()->toDateString(),
+                'hari' => Carbon::now()->format('l'),
+                'waktu_masuk' => $data->created_at,
+                'waktu_submit' => Carbon::now()->toTimeString(),
+                'keterangan' => 1,
+                'wa_user' => $request->wa_user
+            ]);
             return response()->json([
                 'status' => 200,
             ]);

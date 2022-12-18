@@ -39,6 +39,7 @@ class AdminController extends Controller
             $data = User::where('status','2')->get();
             $siswa = User::where('wa_siswa',null)->get();
             // return view('cms.user.verifikasi',compact('data','siswa'));
+            // return redirect('verifikasi');
             return redirect()->route('admin.user.verification');
         }
         else{
@@ -212,8 +213,7 @@ class AdminController extends Controller
             'nama_kelas' => $request->nama,
             'jumlah' =>$request->jumlah
         ]);
-        $data = Kelas::all();
-        return view('cms.user.kelas',compact('data'));
+        return redirect('kelas');
     }
 
     public function logout(){

@@ -151,7 +151,11 @@ class AuthController extends Controller
 
     public function daftarortu(Request $request){
         $verif = User::where('wa_user',$request->wa_ortu)->first();
-        if($request->password==$request->repassword && $verif==false){
+        $akun = User::where('wa_user',$request->wa_siswa)->first();
+        if($akun==false){
+            return redirect('pendaftaranortu')->with('akun','Akun Siswa belum terdaftar');
+        }
+        else if($request->password==$request->repassword && $verif==false){
             User::create([
                 'nama' => $request->nama,
                 'wa_user' => $request->wa_ortu,

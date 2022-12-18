@@ -14,13 +14,14 @@ class CreatePresensisTable extends Migration
     public function up()
     {
         Schema::create('presensis', function (Blueprint $table) {
-            $table->string('id_presensi',20)->primary()->unique();
+            $table->id();
             $table->date('tanggal_presensi',50);
             $table->string('hari',20);
             $table->time('waktu_masuk');
             $table->time('waktu_submit');
             $table->string('keterangan',50);
             $table->string('wa_user',100);
+            $table->timestamps();
         });
     }
 
