@@ -1,0 +1,1 @@
+{!!QrCode::generate($qrCode->token)!!}

@@ -99,6 +99,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/payment/delete/{id}',[AdminFinanceController::class, 'paymentDelete'])->name('admin.finance.payment.delete');
         Route::get('/payment/acc/{id}',[AdminFinanceController::class, 'paymentAcc'])->name('admin.finance.payment.acc');
         Route::get('/history',[AdminFinanceController::class, 'history'])->name('admin.finance.history');
+        Route::get('/cashflow/form/{id?}',[AdminFinanceController::class, 'cashflowForm'])->name('admin.finance.cashflow.form');
+        Route::post('/cashflow/save/{id?}',[AdminFinanceController::class, 'cashflowSave'])->name('admin.finance.cashflow.save');
     });
 
     Route::group(['prefix' => 'absent'], function () {
@@ -107,6 +109,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/meeting/form/{id?}',[AdminAbsentController::class, 'meetingForm'])->name('admin.absent.meeting.form');
         Route::post('/meeting/form/{id?}',[AdminAbsentController::class, 'meetingSave'])->name('admin.absent.meeting.save');
         Route::get('/meeting/delete/{id}',[AdminAbsentController::class, 'meetingDelete'])->name('admin.absent.meeting.delete');
+        Route::get('/meeting/generate-qr-code/{id}',[AdminAbsentController::class, 'meetingGenerateQrCode'])->name('admin.absent.meeting.generate.qrcode');
+        Route::get('/meeting/show-qr-code/{id}',[AdminAbsentController::class, 'meetingShowQrCode'])->name('admin.absent.meeting.show.qrcode');
         Route::get('/history',[AdminAbsentController::class, 'absentHistory'])->name('admin.absent.history');
     });
 

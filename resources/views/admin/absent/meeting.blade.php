@@ -8,7 +8,6 @@ Pertemuan
 
 @section('content')
 <a href="{{ route('admin.absent.meeting.form') }}" class="btn btn-md btn-primary btn-space btn-icon"> <i class="mdi mdi-plus"></i> Tambah Pertemuan</a>
-
 <div class="email-inbox-header">
     <div class="row">
         <div class="col-md-12">
@@ -48,10 +47,16 @@ Pertemuan
                     <td>{{ $meeting->days }}</td>
                     <td>{{ $meeting->hours }}</td>
                     <td>
-                        <a href="{{ asset($meeting->id) }}" class="btn btn-xs btn-default" title="Delete">
-                            Generate Barcode
+                        @if ($meeting->qrCode->tanggal == date('Y-m-d'))
+                        <a href="{{ route('admin.absent.meeting.show.qrcode', $meeting->last_qr_code) }}" class="btn btn-xs btn-default">
+                            Lihat QR Code
                         </a>
-                        <a href="{{ route('admin.absent.meeting.form', $meeting->id) }}" class="btn btn-xs btn-success" title="Delete">
+                        @else
+                        <a href="{{ route('admin.absent.meeting.generate.qrcode', $meeting->id) }}" class="btn btn-xs btn-default">
+                            Generate QR Code
+                        </a>
+                        @endif
+                        <a href="{{ route('admin.absent.meeting.form', $meeting->id) }}" class="btn btn-xs btn-success">
                             Edit
                         </a>
                         <a href="{{ route('admin.absent.meeting.delete', $meeting->id) }}" class="btn btn-xs btn-danger delete" title="Delete">

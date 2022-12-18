@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cashflow;
 use App\Models\Pembayaran;
 use Auth;
+use Illuminate\Http\Request;
 
 class AdminFinanceController extends Controller
 {
@@ -52,6 +53,25 @@ class AdminFinanceController extends Controller
         return view('admin.finance.history')->with([
             'data' => $data
         ]);
+    }
+
+    public function cashflowForm($id = null) {
+        return view('admin.finance.cashflow-form');
+    }
+
+    public function cashflowSave(Request $input, $id = null) {
+        $lastCashflow = Cashflow::orderBy('id', 'desc')->first();
+
+        $nominal = $input->transaction_type == 'cashflow_income' ? $input->nominal : -($input->nominal);
+
+        $cashflow = new Cashflow;
+        $cashflow->nominal = $nominal;
+        $cashflow->last_balance = ($lastCashflow?->last_balance ?? 0) + $nominal;
+        $cashflow->transaction_type = $input->transaction_type;
+        $cashflow->description = $input->description;
+        $cashflow->save();
+
+        return redirect()->route('admin.finance.history');
     }
 
 }
