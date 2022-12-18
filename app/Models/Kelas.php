@@ -13,4 +13,8 @@ class Kelas extends Model
         'jumlah'
     ];
     use HasFactory;
+
+    public function meeting() {
+        return $this->hasOne(Meeting::class, 'class_id')->withDefault();
+    }
 }

@@ -26,8 +26,16 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="">
-                            <a href="#"><i class="icon mdi mdi-check-circle"></i><span>Absensi</span></a>
+                        <li class="parent {{ active(['admin.absent', 'admin.absent.*'], 'active open') }}">
+                            <a href="{{route('admin.absent')}}"><i class="icon mdi mdi-check-circle"></i><span>Absensi</span></a>
+                            <ul class="sub-menu">
+                                <li class="{{ active(['admin.absent.meeting', 'admin.absent.meeting.*']) }}">
+                                    <a href="{{route('admin.absent.meeting')}}">Pertemuan</a>
+                                </li>
+                                <li class="{{ active(['admin.absent', 'admin.absent.history', 'admin.absent.history.*']) }}">
+                                    <a href="{{route('admin.absent.history')}}">Rekapan</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="parent {{ active(['admin.finance', 'admin.finance.*'], 'active open') }}">
                             <a href="{{route('admin.finance')}}"><i class="icon mdi mdi-tab"></i><span>Keuangan</span></a>

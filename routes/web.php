@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAbsentController;
 use App\Http\Controllers\Admin\AdminFinanceController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminController;
@@ -98,6 +99,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/payment/delete/{id}',[AdminFinanceController::class, 'paymentDelete'])->name('admin.finance.payment.delete');
         Route::get('/payment/acc/{id}',[AdminFinanceController::class, 'paymentAcc'])->name('admin.finance.payment.acc');
         Route::get('/history',[AdminFinanceController::class, 'history'])->name('admin.finance.history');
+    });
+
+    Route::group(['prefix' => 'absent'], function () {
+        Route::get('/',[AdminAbsentController::class, 'absent'])->name('admin.absent');
+        Route::get('/meeting',[AdminAbsentController::class, 'meeting'])->name('admin.absent.meeting');
+        Route::get('/meeting/form/{id?}',[AdminAbsentController::class, 'meetingForm'])->name('admin.absent.meeting.form');
+        Route::post('/meeting/form/{id?}',[AdminAbsentController::class, 'meetingSave'])->name('admin.absent.meeting.save');
+        Route::get('/meeting/delete/{id}',[AdminAbsentController::class, 'meetingDelete'])->name('admin.absent.meeting.delete');
+        Route::get('/history',[AdminAbsentController::class, 'absentHistory'])->name('admin.absent.history');
     });
 
 });
