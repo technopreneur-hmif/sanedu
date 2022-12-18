@@ -22,7 +22,7 @@ class ClientController extends Controller
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
-                $presensi = Presensi::where('wa_user',Auth::user()->wa_user)->get();
+                $presensi = Presensi::where('wa_user',Auth::user()->wa_user)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',Auth::user()->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',Auth::user()->wa_user)->where('status','1')->get();
                 $total = 0;
@@ -39,7 +39,7 @@ class ClientController extends Controller
             }else{
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
-                $presensi = Presensi::where('wa_user',$siswa->wa_user)->get();
+                $presensi = Presensi::where('wa_user',$siswa->wa_user)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
@@ -65,7 +65,7 @@ class ClientController extends Controller
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
-                $bayar = Pembayaran::where('wa_user',Auth::user()->wa_user)->get();
+                $bayar = Pembayaran::where('wa_user',Auth::user()->wa_user)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',Auth::user()->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',Auth::user()->wa_user)->where('status','1')->get();
                 $total = 0;
@@ -83,7 +83,7 @@ class ClientController extends Controller
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
                 $ortu = User::where('wa_siswa',$client->wa_user)->first();
-                $bayar = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+                $bayar = Pembayaran::where('wa_user',$client->wa_siswa)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
@@ -108,7 +108,7 @@ class ClientController extends Controller
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
-                $ujian = Ujian::where('wa_user',Auth::user()->wa_user)->get();;
+                $ujian = Ujian::where('wa_user',Auth::user()->wa_user)->orderBy('created_at','DESC')->get();;
                 $nominal = Nominal::where('wa_user',Auth::user()->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',Auth::user()->wa_user)->where('status','1')->get();
                 $total = 0;
@@ -126,7 +126,7 @@ class ClientController extends Controller
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
                 $ortu = User::where('wa_siswa',$client->wa_user)->first();
-                $ujian = Ujian::where('wa_user',$client->wa_siswa)->get();
+                $ujian = Ujian::where('wa_user',$client->wa_siswa)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
