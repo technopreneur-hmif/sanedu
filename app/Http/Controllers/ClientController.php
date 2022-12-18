@@ -223,7 +223,7 @@ class ClientController extends Controller
         if($data == false){
             Presensi::create([
                 'tanggal_presensi' => Carbon::now()->toDateString(),
-                'hari' => Carbon::now()->format('l'),
+                'hari' => Carbon::now()->isoFormat('dddd'),
                 'waktu_masuk' => Carbon::now()->toTimeString(),
                 'waktu_submit' => Carbon::now()->toTimeString(),
                 'keterangan' => 2,
