@@ -9,6 +9,31 @@ Pembayaran
 @section('content')
 <a href="{{ route('admin.finance.cashflow.form') }}" class="btn btn-md btn-primary btn-space btn-icon"> <i class="mdi mdi-plus"></i> Tambah Pemasukan/Pengeluaran</a>
 
+<div class="panel panel-default p-5">
+    <div class="row">
+        <div class="col-md-2">
+            <div>SALDO</div>
+            <strong>Rp 5.000.000</strong>
+        </div>
+        <div class="col-md-2">
+            <div>PROYEKSI</div>
+            <strong>Rp 10.000.000</strong>
+        </div>
+        <div class="col-md-2">
+            <div>PEMASUKAN</div>
+            <strong>Rp 10.000.000</strong>
+        </div>
+        <div class="col-md-2">
+            <div>KEKURANGAN</div>
+            <strong>Rp 10.000.000</strong>
+        </div>
+        <div class="col-md-2">
+            <div>PENGELUARAN</div>
+            <strong>Rp 10.000.000</strong>
+        </div>
+    </div>
+</div>
+
 <div class="email-inbox-header">
     <div class="row">
         <div class="col-md-12">
@@ -26,8 +51,8 @@ Pembayaran
                 <tr>
                     <th>No</th>
                     <th>Jenis Transaksi</th>
-                    <th>Debit</th>
                     <th>Kredit</th>
+                    <th>Debit</th>
                     <th>Saldo Terakhir</th>
                     <th>Waktu</th>
                 </tr>
@@ -36,8 +61,8 @@ Pembayaran
                 <tr>
                     <th>No</th>
                     <th>Jenis Transaksi</th>
-                    <th>Debit</th>
                     <th>Kredit</th>
+                    <th>Debit</th>
                     <th>Saldo Terakhir</th>
                     <th>Waktu</th>
                 </tr>

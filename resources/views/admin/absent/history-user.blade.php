@@ -23,38 +23,37 @@ Rekapan Absen
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Pertemuan</th>
-                    <th>Masuk</th>
-                    <th>Tidak Masuk</th>
-                    <th>Aksi</th>
+                    <th>Tanggal</th>
+                    <th>Hari</th>
+                    <th>Waktu Masuk</th>
+                    <th>Masuk Kehadiran</th>
+                    <th>Keterangan</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Pertemuan</th>
-                    <th>Masuk</th>
-                    <th>Tidak Masuk</th>
-                    <th>Aksi</th>
+                    <th>Tanggal</th>
+                    <th>Hari</th>
+                    <th>Waktu Masuk</th>
+                    <th>Masuk Kehadiran</th>
+                    <th>Keterangan</th>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach($students as $i => $student)
+                @foreach($presensi as $i => $p)
                 <tr>
                     <td>{{ $i+1 }}</td>
-                    <td>{{ $student->nama }}</td>
-                    <td>{{ $student->class->nama_kelas }}</td>
-                    <td>{{ $student->class->qrCodes->count() }}</td>
-                    <td>{{ $student->presentions->count() }}</td>
-                    <td>{{ $student->class->qrCodes->count() - $student->presentions->count() }}</td>
+                    <td>{{ $p->tanggal_presensi }}</td>
+                    <td>{{ $p->hari }}</td>
+                    <td>{{ $p->waktu_masuk }}</td>
+                    <td>{{ $p->waktu_submit }}</td>
                     <td>
-                        <a href="{{ route('admin.absent.history.user', $student->id) }}" class="btn btn-xs btn-default">
-                            Lihat Detail
-                        </a>
+                        @foreach($keterangan as $k)
+                            @if($p->keterangan == $k->id_keterangan)
+                            {{ $k->keterangan }}
+                            @endif
+                        @endforeach
                     </td>
                 </tr>
                 @endforeach

@@ -112,6 +112,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/meeting/generate-qr-code/{id}',[AdminAbsentController::class, 'meetingGenerateQrCode'])->name('admin.absent.meeting.generate.qrcode');
         Route::get('/meeting/show-qr-code/{id}',[AdminAbsentController::class, 'meetingShowQrCode'])->name('admin.absent.meeting.show.qrcode');
         Route::get('/history',[AdminAbsentController::class, 'absentHistory'])->name('admin.absent.history');
+        Route::get('/history/user/{id}',[AdminAbsentController::class, 'absentHistoryUser'])->name('admin.absent.history.user');
     });
 
 });

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cashflow;
 use App\Models\Kelas;
+use App\Models\Keterangan;
 use App\Models\Meeting;
 use App\Models\Pembayaran;
+use App\Models\Presensi;
 use App\Models\qr_code;
 use App\Models\User;
 use Auth;
@@ -101,6 +103,17 @@ class AdminAbsentController extends Controller
         $students = User::where('roles_id', 2)->get();
         return view('admin.absent.history')->with([
             'students' => $students
+        ]);
+    }
+
+    public function absentHistoryUser($id) {
+        $keterangan = Keterangan::all();
+        $siswa = User::where('id',$id)->first();
+        $presensi = Presensi::where('wa_user',$siswa->wa_user)->orderBy('created_at','DESC')->get();
+        return view('admin.absent.history-user')->with([
+            'siswa' => $siswa,
+            'presensi' => $presensi,
+            'keterangan' => $keterangan,
         ]);
     }
 
