@@ -41,14 +41,29 @@ Form Pertemuan
                     </span>
                     @endif
                 </div>
-                <div class="form-group">
-                    <label>Jam</label>
-                    <input type="text" class="form-control input-sm" placeholder="Sesi 1 (10:00-12:00)" name="hours"  value="{{ isset($meeting) ? $meeting->hours : old('hours') }}" required>
-                    @if($errors->has('hours'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('hours') }}</strong>
-                    </span>
-                    @endif
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Jam Mulai</label>
+                            <input type="text" class="form-control input-sm" placeholder="12:00" name="started_at"  value="{{ isset($meeting) ? $meeting->started_at : old('started_at') }}" required>
+                            @if($errors->has('started_at'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('started_at') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Jam Selesai</label>
+                            <input type="text" class="form-control input-sm" placeholder="14:00" name="finished_at"  value="{{ isset($meeting) ? $meeting->finished_at : old('finished_at') }}" required>
+                            @if($errors->has('finished_at'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('finished_at') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <button type="submit"  class="btn btn-primary btn-fill btn-md btn-icon"><i class="mdi mdi-check"></i>Simpan</button>
             </div>

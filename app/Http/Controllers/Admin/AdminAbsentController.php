@@ -17,8 +17,18 @@ class AdminAbsentController extends Controller
     
     public function meeting() {
         $data = Meeting::get();
+        $classes = Kelas::get();
+        $selectedClass = null;
+        
+        if(isset($_GET['classId']) && $_GET['classId'] != '') {
+            $selectedClass = Kelas::find($_GET['classId']);
+            $data = Meeting::where('class_id', $selectedClass->id)->get();
+        }
+
         return view('admin.absent.meeting')->with([
-            'data' => $data
+            'data' => $data,
+            'classes' => $classes,
+            'selectedClass' => $selectedClass,
         ]);
     }
 
@@ -30,9 +40,12 @@ class AdminAbsentController extends Controller
                                 ->first();
         if($lastQrCode == null) {
             $qrCode = new qr_code;
-            $qrCode->token = md5(bcrypt(date('Y-m-d')));
+            $qrCode->token = md5(bcrypt(date('Y-m-d') . $meeting->started_at . $meeting->started_at . $meeting->id)) . $meeting->id;
             $qrCode->kelas = $meeting->class_id;
+            $qrCode->meeting_id = $meeting->id;
             $qrCode->tanggal = date('Y-m-d');
+            $qrCode->started_at = $meeting->started_at;
+            $qrCode->finished_at = $meeting->finished_at;
             $qrCode->save();
 
             $meeting->last_qr_code = $qrCode->id;
@@ -69,7 +82,8 @@ class AdminAbsentController extends Controller
         }
         $meeting->class_id = $input->class_id;
         $meeting->days = $input->days;
-        $meeting->hours = $input->hours;
+        $meeting->started_at = $input->started_at;
+        $meeting->finished_at = $input->finished_at;
         $meeting->save();
         
         return redirect()->route('admin.absent.meeting');

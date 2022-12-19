@@ -7,6 +7,7 @@ User
 
 
 @section('content')
+<a href="{{ route('tambahkelas') }}" class="btn btn-md btn-primary btn-space btn-icon"> <i class="mdi mdi-plus"></i> Tambah Kelas</a>
 <div class="email-inbox-header">
     <div class="row">
         <div class="col-md-12">

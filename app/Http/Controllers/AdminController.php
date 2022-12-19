@@ -213,7 +213,7 @@ class AdminController extends Controller
             'nama_kelas' => $request->nama,
             'jumlah' =>$request->jumlah
         ]);
-        return redirect('kelas');
+        return redirect()->route('admin.user.class');
     }
 
     public function logout(){
