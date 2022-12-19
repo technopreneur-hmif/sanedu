@@ -205,6 +205,10 @@ class ClientController extends Controller
             'bukti_pembayaran' => $request->file('bukti')->storeAs('public/bukti_pembayaran/' . $user->nama , $request->file('bukti')->getClientOriginalName())
         ]);
 
+        $file = $request->file('bukti');
+        $tujuan_upload = 'public/bukti_pembayaran/'.$user->nama;
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+
         return redirect('riwayat_pembayaran');
     }
 
