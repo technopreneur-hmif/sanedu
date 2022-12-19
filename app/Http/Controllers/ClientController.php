@@ -22,7 +22,7 @@ class ClientController extends Controller
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
-                $presensi = Presensi::where('wa_user',Auth::user()->wa_user)->get();
+                $presensi = Presensi::where('wa_user',Auth::user()->wa_user)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',Auth::user()->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',Auth::user()->wa_user)->where('status','1')->get();
                 $total = 0;
@@ -39,7 +39,7 @@ class ClientController extends Controller
             }else{
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
-                $presensi = Presensi::where('wa_user',$siswa->wa_user)->get();
+                $presensi = Presensi::where('wa_user',$siswa->wa_user)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
@@ -65,7 +65,7 @@ class ClientController extends Controller
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
-                $bayar = Pembayaran::where('wa_user',Auth::user()->wa_user)->get();
+                $bayar = Pembayaran::where('wa_user',Auth::user()->wa_user)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',Auth::user()->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',Auth::user()->wa_user)->where('status','1')->get();
                 $total = 0;
@@ -83,7 +83,7 @@ class ClientController extends Controller
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
                 $ortu = User::where('wa_siswa',$client->wa_user)->first();
-                $bayar = Pembayaran::where('wa_user',$client->wa_siswa)->get();
+                $bayar = Pembayaran::where('wa_user',$client->wa_siswa)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
@@ -108,7 +108,7 @@ class ClientController extends Controller
             if(Auth::user()->roles_id=='2'){
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','2')->first();
                 $siswa = User::where('wa_siswa',null)->get();
-                $ujian = Ujian::where('wa_user',Auth::user()->wa_user)->get();;
+                $ujian = Ujian::where('wa_user',Auth::user()->wa_user)->orderBy('created_at','DESC')->get();;
                 $nominal = Nominal::where('wa_user',Auth::user()->wa_user)->first();
                 $pembayaran = Pembayaran::where('wa_user',Auth::user()->wa_user)->where('status','1')->get();
                 $total = 0;
@@ -126,7 +126,7 @@ class ClientController extends Controller
                 $client = User::where('wa_user',Auth::user()->wa_user)->where('roles_id','1')->first();
                 $siswa = User::where('wa_user',$client->wa_siswa)->first();
                 $ortu = User::where('wa_siswa',$client->wa_user)->first();
-                $ujian = Ujian::where('wa_user',$client->wa_siswa)->get();
+                $ujian = Ujian::where('wa_user',$client->wa_siswa)->orderBy('created_at','DESC')->get();
                 $nominal = Nominal::where('wa_user',$client->wa_siswa)->first();
                 $pembayaran = Pembayaran::where('wa_user',$client->wa_siswa)->where('status','1')->get();
                 $total = 0;
@@ -205,6 +205,10 @@ class ClientController extends Controller
             'bukti_pembayaran' => $request->file('bukti')->storeAs('public/bukti_pembayaran/' . $user->nama , $request->file('bukti')->getClientOriginalName())
         ]);
 
+        $file = $request->file('bukti');
+        $tujuan_upload = 'public/bukti_pembayaran/'.$user->nama;
+        $file->move($tujuan_upload,$file->getClientOriginalName());
+
         return redirect('riwayat_pembayaran');
     }
 
@@ -220,10 +224,11 @@ class ClientController extends Controller
     public function validasi_qrcode(Request $request){
         $qr = $request->qr_code;
         $data = qr_code::where('tanggal',Carbon::now()->toDateString())->first();
+        $kelas = qr_code::where('kelas',Auth::user()->kelas)->first();
         if($data == false){
             Presensi::create([
                 'tanggal_presensi' => Carbon::now()->toDateString(),
-                'hari' => Carbon::now()->format('l'),
+                'hari' => Carbon::now()->isoFormat('dddd'),
                 'waktu_masuk' => Carbon::now()->toTimeString(),
                 'waktu_submit' => Carbon::now()->toTimeString(),
                 'keterangan' => 2,
@@ -233,7 +238,7 @@ class ClientController extends Controller
                 'status' => 400,
             ]);
         }
-        elseif($qr == $data->token){
+        elseif($qr == $data->token && $kelas == true){
             Presensi::create([
                 'tanggal_presensi' => Carbon::now()->toDateString(),
                 'hari' => Carbon::now()->format('l'),
