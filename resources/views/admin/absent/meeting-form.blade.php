@@ -45,7 +45,7 @@ Form Pertemuan
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Jam Mulai</label>
-                            <input type="text" class="form-control input-sm" placeholder="12:00" name="started_at"  value="{{ isset($meeting) ? $meeting->started_at : old('started_at') }}" required>
+                            <input type="time" class="form-control input-sm" placeholder="12:00" name="started_at"  value="{{ isset($meeting) ? $meeting->started_at : old('started_at') }}" required>
                             @if($errors->has('started_at'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('started_at') }}</strong>
@@ -56,7 +56,7 @@ Form Pertemuan
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Jam Selesai</label>
-                            <input type="text" class="form-control input-sm" placeholder="14:00" name="finished_at"  value="{{ isset($meeting) ? $meeting->finished_at : old('finished_at') }}" required>
+                            <input type="time" class="form-control input-sm" placeholder="14:00" name="finished_at"  value="{{ isset($meeting) ? $meeting->finished_at : old('finished_at') }}" required>
                             @if($errors->has('finished_at'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('finished_at') }}</strong>
