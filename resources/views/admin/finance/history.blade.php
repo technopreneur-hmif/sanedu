@@ -13,33 +13,48 @@ Pembayaran
     <div class="row">
         <div class="col-md-2">
             <div>SALDO</div>
-            <strong>Rp 5.000.000</strong>
+            <strong>Rp {{ number_format($data->first()?->last_balance) }}</strong>
         </div>
         <div class="col-md-2">
             <div>PROYEKSI</div>
-            <strong>Rp 10.000.000</strong>
+            <strong>Rp {{ number_format($projection->sum('nominal')) }}</strong>
         </div>
         <div class="col-md-2">
             <div>PEMASUKAN</div>
-            <strong>Rp 10.000.000</strong>
+            <strong>Rp {{ number_format($debit->sum('nominal')) }}</strong>
         </div>
         <div class="col-md-2">
             <div>KEKURANGAN</div>
-            <strong>Rp 10.000.000</strong>
+            <strong>Rp {{ number_format($projection->sum('nominal') - $payment->sum('nominal')) }}</strong>
         </div>
         <div class="col-md-2">
             <div>PENGELUARAN</div>
-            <strong>Rp 10.000.000</strong>
+            <strong>Rp {{ number_format($credit->sum('nominal')) }}</strong>
         </div>
     </div>
 </div>
 
 <div class="email-inbox-header">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="email-title">
                 <span class="icon mdi mdi-accounts-alt mr-3"></span> Pembayaran
             </div>
+        </div>
+        <div class="col-md-6">
+            <form action="{{route('admin.finance.history')}}" method="get">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="date" name="start_date" class="form-control input-sm" value="{{$startDate}}" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" name="finish_date" class="form-control input-sm" value="{{$finishDate}}" required>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-default btn-lg">Filter Data</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

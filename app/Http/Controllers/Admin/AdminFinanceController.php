@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cashflow;
+use App\Models\Nominal;
 use App\Models\Pembayaran;
 use Auth;
 use Illuminate\Http\Request;
@@ -49,9 +50,49 @@ class AdminFinanceController extends Controller
     }
 
     public function history() {
-        $data = Cashflow::orderBy('id', 'desc')->get();
+        $year = date('Y');
+        $nextYear = $year + 1;
+
+        $startDate = date('Y-m-d', strtotime($year . "-07-01"));
+        $finishDate = date('Y-m-d', strtotime($nextYear . "-06-30"));
+        
+        if(isset($_GET['start_date']) && $_GET['start_date'] != '') {
+            $startDate = date('Y-m-d', strtotime($_GET['start_date']));
+        }
+        if(isset($_GET['finish_date']) && $_GET['finish_date'] != '') {
+            $finishDate = date('Y-m-d', strtotime($_GET['finish_date']));
+        }
+
+        $data = Cashflow::whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $finishDate)
+                        ->orderBy('id', 'desc')->get();
+        
+        $debit = Cashflow::whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $finishDate)
+                        ->where('nominal', '>=', 0)
+                        ->orderBy('id', 'desc')->get();
+        
+        $credit = Cashflow::whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $finishDate)
+                        ->where('nominal', '<', 0)
+                        ->orderBy('id', 'desc')->get();
+        
+        $projection = Nominal::whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $finishDate)
+                        ->orderBy('id', 'desc')->get();
+        
+        $payment = Pembayaran::whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $finishDate)
+                        ->get();
+
         return view('admin.finance.history')->with([
-            'data' => $data
+            'data' => $data,
+            'startDate' => $startDate,
+            'finishDate' => $finishDate,
+            'debit' => $debit,
+            'credit' => $credit,
+            'projection' => $projection,
+            'payment' => $payment,
         ]);
     }
 
