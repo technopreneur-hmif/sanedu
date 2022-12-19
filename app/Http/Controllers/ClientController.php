@@ -224,6 +224,7 @@ class ClientController extends Controller
     public function validasi_qrcode(Request $request){
         $qr = $request->qr_code;
         $data = qr_code::where('tanggal',Carbon::now()->toDateString())->first();
+        $kelas = qr_code::where('kelas',Auth::user()->kelas)->first();
         if($data == false){
             Presensi::create([
                 'tanggal_presensi' => Carbon::now()->toDateString(),
@@ -237,7 +238,7 @@ class ClientController extends Controller
                 'status' => 400,
             ]);
         }
-        elseif($qr == $data->token){
+        elseif($qr == $data->token && $kelas == true){
             Presensi::create([
                 'tanggal_presensi' => Carbon::now()->toDateString(),
                 'hari' => Carbon::now()->format('l'),
