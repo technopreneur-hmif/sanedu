@@ -165,8 +165,8 @@ class ClientController extends Controller
                     $kekurangan = 0;
                 }
         }else{
-            $nominal = Nominal::where('wa_user',$akun->wa_siswa)->first();
-            $pembayaran = Pembayaran::where('wa_user',$akun->wa_siswa)->where('status','1')->get();
+            $nominal = Nominal::where('wa_user',$akun->wa_user)->first();
+            $pembayaran = Pembayaran::where('wa_user',$akun->wa_user)->where('status','1')->get();
             $total = 0;
                 if($nominal !=null){
                     foreach($pembayaran as $pem){
@@ -186,9 +186,9 @@ class ClientController extends Controller
 
         if($akun==null){
             $akun = User::where('wa_user',$id)->first();
-            $no_siswa = $akun->wa_siswa;
-        }else{
             $no_siswa = $akun->wa_user;
+        }else{
+            $no_siswa = $akun->wa_siswa;
         }
         return view('client.upload-pembayaran',compact('no_siswa'));
     }
@@ -202,7 +202,7 @@ class ClientController extends Controller
             'pembayaran_ke' => $pembayaran + 1,
             'status' => 2,
             'wa_user' => $request->no_wa,
-            'bukti_pembayaran' => $request->file('bukti')->storeAs('public/bukti_pembayaran/' . $user->nama , $request->file('bukti')->getClientOriginalName())
+            'bukti_pembayaran' => $request->file('bukti')->storeAs('public/bukti_pembayaran/' . Auth::user()->nama , $request->file('bukti')->getClientOriginalName())
         ]);
 
         $file = $request->file('bukti');
@@ -225,35 +225,53 @@ class ClientController extends Controller
         $qr = $request->qr_code;
         $data = qr_code::where('tanggal',Carbon::now()->toDateString())->first();
         $kelas = qr_code::where('kelas',Auth::user()->kelas)->first();
-        if($data == false){
-            Presensi::create([
-                'tanggal_presensi' => Carbon::now()->toDateString(),
-                'hari' => Carbon::now()->isoFormat('dddd'),
-                'waktu_masuk' => Carbon::now()->toTimeString(),
-                'waktu_submit' => Carbon::now()->toTimeString(),
-                'keterangan' => 2,
-                'wa_user' => $request->wa_user
-            ]);
-            return response()->json([
-                'status' => 400,
-            ]);
-        }
-        elseif($qr == $data->token && $kelas == true){
-            Presensi::create([
-                'tanggal_presensi' => Carbon::now()->toDateString(),
-                'hari' => Carbon::now()->format('l'),
-                'waktu_masuk' => $data->created_at,
-                'waktu_submit' => Carbon::now()->toTimeString(),
-                'keterangan' => 1,
-                'wa_user' => $request->wa_user
-            ]);
-            return response()->json([
-                'status' => 200,
-            ]);
+        $presensi = Presensi::where('wa_user',Auth::user()->wa_user)->where('tanggal_presensi',Carbon::now()->toDateString())->first();
+        if($presensi!=true){
+            if($qr == $data->token && $kelas == true){
+                if(Carbon::now()->toTimeString() < $data->started_at){
+                    Presensi::create([
+                        'tanggal_presensi' => Carbon::now()->toDateString(),
+                        'hari' => Carbon::now()->isoFormat('dddd'),
+                        'waktu_masuk' => $data->started_at,
+                        'waktu_submit' => Carbon::now()->toTimeString(),
+                        'keterangan' => 1,
+                        'wa_user' => $request->wa_user
+                    ]);
+                    return response()->json([
+                        'status' => 200,
+                    ]);
+                }elseif(Carbon::now()->toTimeString() > $data->started_at && Carbon::now()->toTimeString() < $data->finished_at){
+                    Presensi::create([
+                        'tanggal_presensi' => Carbon::now()->toDateString(),
+                        'hari' => Carbon::now()->isoFormat('dddd'),
+                        'waktu_masuk' => $data->started_at,
+                        'waktu_submit' => Carbon::now()->toTimeString(),
+                        'keterangan' => 2,
+                        'wa_user' => $request->wa_user
+                    ]);
+                    return response()->json([
+                        'status' => 200,
+                    ]);
+                }elseif(Carbon::now()->toTimeString() > $data->finished_at){
+                    Presensi::create([
+                        'tanggal_presensi' => Carbon::now()->toDateString(),
+                        'hari' => Carbon::now()->isoFormat('dddd'),
+                        'waktu_masuk' => $data->started_at,
+                        'waktu_submit' => Carbon::now()->toTimeString(),
+                        'keterangan' => 3,
+                        'wa_user' => $request->wa_user
+                    ]);
+                    return response()->json([
+                        'status' => 400,
+                    ]);
+                }
+            }else{
+                return response()->json([
+                    'status' => 400,
+                ]);
+            }
         }else{
-            return response()->json([
-                'status' => 400,
-            ]);
+            redirect('absensi');
         }
     }
 }

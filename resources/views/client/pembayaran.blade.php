@@ -34,7 +34,11 @@
 
 
                 </div>
-                <a class="btn btn-primary" href="{{ '../upload_pembayaran/'.$akun->wa_user }}" role="button">Verifikasi Pembayaran</a>
+                @if($akun->roles_id=='1')
+                    <a class="btn btn-primary" href="{{ '../upload_pembayaran/'.$akun->wa_siswa }}" role="button">Verifikasi Pembayaran</a>
+                @else
+                    <a class="btn btn-primary" href="{{ '../upload_pembayaran/'.$akun->wa_user }}" role="button">Verifikasi Pembayaran</a>
+                @endif
             </div>
         </div>
     </div>
