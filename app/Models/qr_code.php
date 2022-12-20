@@ -12,4 +12,8 @@ class qr_code extends Model
     protected $fillable = [
 
     ];
+
+    public function presensis() {
+        return $this->hasMany(Presensi::class, 'qr_code_id');
+    }
 }

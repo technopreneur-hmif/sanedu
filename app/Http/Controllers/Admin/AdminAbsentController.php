@@ -109,11 +109,11 @@ class AdminAbsentController extends Controller
     public function absentHistoryUser($id) {
         $keterangan = Keterangan::all();
         $siswa = User::where('id',$id)->first();
-        $presensi = Presensi::where('wa_user',$siswa->wa_user)->orderBy('created_at','DESC')->get();
+        $meetings = qr_code::where('kelas', $siswa->class->id)->get();
         return view('admin.absent.history-user')->with([
             'siswa' => $siswa,
-            'presensi' => $presensi,
             'keterangan' => $keterangan,
+            'meetings' => $meetings,
         ]);
     }
 
