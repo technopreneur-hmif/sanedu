@@ -26,7 +26,7 @@ Rekapan Absen
                     <th>Tanggal</th>
                     <th>Hari</th>
                     <th>Waktu Masuk</th>
-                    <th>Masuk Kehadiran</th>
+                    <th>Waktu Kehadiran</th>
                     <th>Keterangan</th>
                 </tr>
             </thead>
@@ -36,24 +36,30 @@ Rekapan Absen
                     <th>Tanggal</th>
                     <th>Hari</th>
                     <th>Waktu Masuk</th>
-                    <th>Masuk Kehadiran</th>
+                    <th>Waktu Kehadiran</th>
                     <th>Keterangan</th>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach($presensi as $i => $p)
+                @foreach($meetings as $i => $meeting)
                 <tr>
                     <td>{{ $i+1 }}</td>
-                    <td>{{ $p->tanggal_presensi }}</td>
-                    <td>{{ $p->hari }}</td>
-                    <td>{{ $p->waktu_masuk }}</td>
-                    <td>{{ $p->waktu_submit }}</td>
+                    <td>{{ $meeting->tanggal }}</td>
+                    <td>{{ date('l', strtotime($meeting->tanggal)) }}</td>
+                    <td>{{ $meeting->started_at }}</td>
                     <td>
-                        @foreach($keterangan as $k)
-                            @if($p->keterangan == $k->id_keterangan)
-                            {{ $k->keterangan }}
-                            @endif
-                        @endforeach
+                        @if($meeting->presensis->count() > 0) 
+                            {{ $meeting->presensis->where('wa_user', $siswa->wa_user)->first()->waktu_submit }}
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td>
+                        @if($meeting->presensis->count() > 0) 
+                            {{ $meeting->presensis->where('wa_user', $siswa->wa_user)->first()->keterangan }}
+                        @else
+                            Tidak Hadir
+                        @endif
                     </td>
                 </tr>
                 @endforeach
