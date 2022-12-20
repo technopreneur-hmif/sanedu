@@ -31,7 +31,7 @@ class AdminUserController extends Controller
             ]);
             $data = User::where('status','2')->get();
             $siswa = User::where('wa_siswa',null)->get();
-            return view('cms.user.verifikasi',compact('data','siswa'));
+            return redirect()->route('admin.user.verification');
         }
         else{
             return view('cms.user.acc-verif', compact('verif','kelas'));
