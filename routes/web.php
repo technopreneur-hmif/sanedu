@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAbsentController;
+use App\Http\Controllers\Admin\AdminExamController;
 use App\Http\Controllers\Admin\AdminFinanceController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminController;
@@ -113,6 +114,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/meeting/show-qr-code/{id}',[AdminAbsentController::class, 'meetingShowQrCode'])->name('admin.absent.meeting.show.qrcode');
         Route::get('/history',[AdminAbsentController::class, 'absentHistory'])->name('admin.absent.history');
         Route::get('/history/user/{id}',[AdminAbsentController::class, 'absentHistoryUser'])->name('admin.absent.history.user');
+    });
+
+    Route::group(['prefix' => 'exam'], function () {
+        Route::get('/',[AdminExamController::class, 'exam'])->name('admin.exam');
+        Route::get('/form/{id?}',[AdminExamController::class, 'examForm'])->name('admin.exam.form');
+        Route::post('/form/{id?}',[AdminExamController::class, 'examSave'])->name('admin.exam.save');
+        Route::get('/history',[AdminExamController::class, 'examHistory'])->name('admin.exam.history');
+        Route::get('/history/form/{id?}',[AdminExamController::class, 'examHistoryForm'])->name('admin.exam.history.form');
+        Route::post('/history/form/{id?}',[AdminExamController::class, 'examHistorySave'])->name('admin.exam.history.save');
     });
 
 });

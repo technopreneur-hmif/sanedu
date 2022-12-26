@@ -48,8 +48,16 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="">
+                        <li class="parent {{ active(['admin.exam', 'admin.exam.*'], 'active open') }}">
                             <a href="#"><i class="icon mdi mdi-ticket-star"></i><span>Ujian</span></a>
+                            <ul class="sub-menu">
+                                <li class="{{ active(['admin.exam', 'admin.exam.form']) }}">
+                                    <a href="{{route('admin.exam')}}">Buat Ujian</a>
+                                </li>
+                                <li class="{{ active(['admin.exam.history', 'admin.exam.history.*']) }}">
+                                    <a href="{{route('admin.exam.history')}}">Rekapan</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
